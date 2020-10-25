@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use App\Http\Middleware\IsAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+Route::get('redirects', 'App\Http\Controllers\HomeController@index');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/app/{anything?}', function ($anything = null) {
+        return View::make('app');
+    })->name('app');
+
+Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])
+    ->get('/admin/{anything?}', function ($anything = null) {
+        return View::make('admin');
+    })->name('admin');
