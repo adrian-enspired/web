@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 
+use App\Http\Controllers\ {
+    UserController
+};
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,6 +19,20 @@ use App\Http\Middleware\IsAdmin;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/self', function (Request $request) {
     return $request->user();
+});
+
+// $admin_middleware = ['auth:sanctum', 'verified', IsAdmin::class];
+$admin_middleware = [];
+// Admin only routes
+Route::middleware($admin_middleware)->prefix('admin')->group(function () {
+    Route::resource('/user', UserController::class);
+});
+
+// User routes
+// $user_middleware = ['auth:sanctum', 'verified'];
+$user_middleware = [];
+Route::middleware($user_middleware)->group(function () {
+
 });

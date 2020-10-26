@@ -2,6 +2,7 @@
 <html lang="en" data-ng-app="app" class="no-js {{app.settings.layoutBoxed ? 'boxed' : ''}}">
 
 <head>
+    <base href="/app">
     <meta charset="utf-8" />
     <title>Slant Admin - Angular | Music</title>
     <meta name="description" content="AngularJS" , "admin", "widgets", "admin panel", "flat ui", "ui", "web app", "app", "backend", "angular", "dashboard", "bootstrap", "charts", "ui kit", "responsive" />

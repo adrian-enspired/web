@@ -5,9 +5,10 @@
  */
 angular.module('app')
     .config(
-        ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
-            function($stateProvider, $urlRouterProvider, JQ_CONFIG) {
+        ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'JQ_CONFIG',
+            function($stateProvider, $urlRouterProvider, $locationProvider, JQ_CONFIG) {
 
+                $locationProvider.html5Mode(true);
                 $urlRouterProvider
                     .otherwise('/app/music/dashboard');
                 $stateProvider
@@ -261,14 +262,6 @@ angular.module('app')
                         }
                     })
 
-
-
-
-
-
-
-/////////////////////////////////////////////////////////
-
                     .state('app.mus-report-songs', {
                         url: '/music/report-songs',
                         templateUrl: 'partials/mus-report-songs.html',
@@ -310,7 +303,6 @@ angular.module('app')
                             ]
                         }
                     })
-
             }
         ]
     );

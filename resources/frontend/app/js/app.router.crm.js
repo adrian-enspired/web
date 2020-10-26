@@ -5,16 +5,17 @@
  */
 angular.module('app')
     .config(
-        ['$stateProvider', '$urlRouterProvider', 'JQ_CONFIG',
-            function($stateProvider, $urlRouterProvider, JQ_CONFIG) {
+        ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'JQ_CONFIG',
+            function($stateProvider, $urlRouterProvider, $locationProvider, JQ_CONFIG) {
 
+                $locationProvider.html5Mode(true);
                 $urlRouterProvider
-                    .otherwise('/app/crm/dashboard');
+                    .otherwise('/admin/crm/dashboard');
                 $stateProvider
 
                     .state('app', {
                         abstract: true,
-                        url: '/app',
+                        url: '/admin',
                         templateUrl: 'partials/app.html'
                     })
 
@@ -61,19 +62,6 @@ angular.module('app')
                     .state('app.mail.view', {
                         url: '/{mailId:[0-9]{1,4}}',
                         templateUrl: 'partials/mail-view.html'
-                    })
-
-                    .state('app.crm-customers', {
-                        url: '/crm/customers',
-                        templateUrl: 'partials/crm-customers.html'
-                    })
-                    .state('app.crm-customer-add', {
-                        url: '/crm/customer-add',
-                        templateUrl: 'partials/crm-customer-add.html'
-                    })
-                    .state('app.crm-customer-edit', {
-                        url: '/crm/customer-edit',
-                        templateUrl: 'partials/crm-customer-edit.html'
                     })
 
                     .state('app.crm-leads', {
@@ -224,15 +212,15 @@ angular.module('app')
                             ]
                         }
                     })
-                    .state('app.crm-report-customers', {
-                        url: '/crm/report-customers',
-                        templateUrl: 'partials/crm-report-customers.html',
+                    .state('app.crm-report-users', {
+                        url: '/crm/report-users',
+                        templateUrl: 'partials/crm-report-users.html',
                         resolve: {
                             deps: ['$ocLazyLoad',
                                 function($ocLazyLoad) {
                                     return $ocLazyLoad.load('chart.js').then(
                                         function() {
-                                            return $ocLazyLoad.load('js/controllers/crm-report-customers.js');
+                                            return $ocLazyLoad.load('js/controllers/crm-report-users.js');
                                         }
                                     );
                                 }

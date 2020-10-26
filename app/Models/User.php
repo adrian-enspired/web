@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Artist;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,19 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'artist'
     ];
+
+    /**
+     * Get the artist associated with this user
+     *
+     */
+    public function artist()
+    {
+        return $this->hasOne(Artist::class);
+    }
+
+    public function getArtistAttribute() {
+        return $this->artist();
+    }
 }

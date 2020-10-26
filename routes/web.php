@@ -15,18 +15,20 @@ use App\Http\Middleware\IsAdmin;
 |
 */
 
+// Wildcard route for angular to catch app pages
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/app/{anything?}', function ($anything = null) {
+        return View::make('app');
+    })->where('anything', '(.*)');
+
+// Wildcard route for angular to catch on admin pages
+Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])
+    ->get('/admin/{anything?}', function ($anything = null) {
+        return View::make('admin');
+    })->where('anything', '(.*)');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('redirects', 'App\Http\Controllers\HomeController@index');
-
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/app/{anything?}', function ($anything = null) {
-        return View::make('app');
-    })->name('app');
-
-Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])
-    ->get('/admin/{anything?}', function ($anything = null) {
-        return View::make('admin');
-    })->name('admin');

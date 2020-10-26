@@ -27,5 +27,19 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('user'),
             'admin' => false
         ]);
+        DB::table('artists')->insert([
+            'name' => 'Hiphop Band',
+            'photo' => 'default.jpg',
+            'url' => 'http://www.example.com',
+            'bio' => 'Wu-tang',
+            'user_id' => 1
+        ]);
+        DB::table('artists')->insert([
+            'name' => 'Rock Band',
+            'photo' => 'default.jpg',
+            'url' => 'http://www.example.com',
+            'bio' => 'The GOAT Band',
+            'user_id' => 2
+        ]);
     }
 }
