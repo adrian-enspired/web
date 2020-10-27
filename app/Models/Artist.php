@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
+use App\Models\Album;
 
 class Artist extends Model
 {
@@ -20,7 +21,17 @@ class Artist extends Model
         'name',
         'photo',
         'url',
-        'bio'
+        'bio',
+        'user_id'
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'albums'
     ];
 
     /**
@@ -30,5 +41,18 @@ class Artist extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the albums that are associated with this artist.
+     *
+     */
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
+
+    public function getAlbumsAttribute() {
+        return $this->albums();
     }
 }

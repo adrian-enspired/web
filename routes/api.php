@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 
 use App\Http\Controllers\ {
-    UserController
+    UserController,
+    ArtistController
 };
 
 /*
@@ -28,6 +29,7 @@ $admin_middleware = [];
 // Admin only routes
 Route::middleware($admin_middleware)->prefix('admin')->group(function () {
     Route::resource('/user', UserController::class);
+    Route::resource('/artist', ArtistController::class);
 });
 
 // User routes

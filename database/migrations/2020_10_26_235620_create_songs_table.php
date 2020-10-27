@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArtistsTable extends Migration
+class CreateSongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateArtistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('songs', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('photo')->nullable();
-            $table->string('url')->nullable();
-            $table->longText('bio')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('file');
+            $table->boolean('best');
+            $table->foreignId('album_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateArtistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('songs');
     }
 }
