@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Artist;
+use App\Models\Release;
 
 class User extends Authenticatable
 {
@@ -28,6 +28,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'company',
+        'phone'
     ];
 
     /**
@@ -40,6 +42,7 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'admin'
     ];
 
     /**
@@ -57,20 +60,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'profile_photo_url',
-        'artist'
+        'profile_photo_url'
     ];
 
     /**
-     * Get the artist associated with this user
+     * Get the releases associated with this user
      *
      */
-    public function artist()
+    public function releases()
     {
-        return $this->hasOne(Artist::class);
+        return $this->hasMany(Release::class);
     }
 
-    public function getArtistAttribute() {
-        return $this->artist();
+    /**
+     * Is this user an admin?
+     *
+     * @return bool
+     */
+    public function isAdmin() : bool
+    {
+        return $this->admin;
     }
 }

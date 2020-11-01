@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(['users' => User::all()]);
+        return response(['users' => User::all()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return response()->json(['user' => $user]);
+        return response(['user' => $user]);
     }
 
     /**
@@ -47,10 +47,12 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
+        $user->company = $request->get('company');
+        $user->phone = $request->get('phone');
         $user->admin = $request->get('admin') ?? 0;
         $user->save();
 
-        return response()->json(['user' => $user]);
+        return response(['user' => $user]);
     }
 
     /**

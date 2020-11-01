@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Artist;
 
-class ArtistController extends Controller
+use App\Models\Release;
+
+class ReleaseController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return response()->json(['artists' => Artist::all()]);
+        return response(['releases' => Release::all()]);
     }
 
     /**
@@ -25,9 +28,9 @@ class ArtistController extends Controller
      */
     public function show($id)
     {
-        $artist = Artist::find($id);
+        $release = Release::find($id);
 
-        return response()->json(['artist' => $artist]);
+        return response(['release' => $release]);
     }
 
     /**
@@ -40,18 +43,19 @@ class ArtistController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'title' => 'required',
+            'artist' => 'required'
         ]);
 
-        $artist = Artist::find($id);
-        $artist->name = $request->get('name');
-        $artist->photo = $request->get('photo');
-        $artist->url = $request->get('url');
-        $artist->bio = $response->get('bio');
-        $artist->user_id = $response->get('user_id');
-        $artist->save();
+        $release = Release::findOrFail($id);
+        $release->title = $request->get('title');
+        $release->artist = $request->get('artist');
+        $release->artwork = $request->get('artwork');
+        $release->status = $request->get('status');
+        $release->user_id = $response->get('user_id');
+        $release->save();
 
-        return response()->json(['artist' => $artist]);
+        return response(['release' => $release]);
     }
 
     /**
@@ -62,7 +66,7 @@ class ArtistController extends Controller
      */
     public function destroy($id)
     {
-        Artist::find($id)->delete();
+        Release::find($id)->delete();
         return response(null, 200);
     }
 }

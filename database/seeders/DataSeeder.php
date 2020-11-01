@@ -10,8 +10,7 @@ use \Faker\Factory as Faker;
 
 use App\Models\ {
     User,
-    Artist,
-    Album,
+    Release,
     Song
 };
 
@@ -34,19 +33,14 @@ class DataSeeder extends Seeder
             'Country',
             'Salsa'
         ];
-        $statuses = [
-            'Pending',
-            'For Sale',
-            'Paid',
-            'Waiting on Payment',
-            'On Check',
-            'Completed'
-        ];
+        $statuses = config('enums.release_status');
 
         $admin_user = User::create([
             'name' => 'Administrator',
             'email' => 'admin@localhost',
             'password' => Hash::make('admin'),
+            'company' => 'Admin Services, LLC',
+            'phone' => '555-555-5555',
             'admin' => true
         ]);
 
@@ -54,31 +48,32 @@ class DataSeeder extends Seeder
             'name' => 'Some User',
             'email' => 'user@localhost',
             'password' => Hash::make('user'),
+            'company' => 'User Services, LLC',
+            'phone' => '111-222-3333',
             'admin' => false
         ]);
-        $artist = Artist::create([
-            'name' => Faker::create()->name,
-            'photo' => Faker::create()->image('/tmp'),
-            'url' => Faker::create()->url,
-            'bio' => Faker::create()->text,
+        shuffle($statuses);
+        $release = Release::create([
+            'title' => Faker::create()->company,
+            'artist' => Faker::create()->name,
+            'artwork' => Faker::create()->image('/tmp'),
+            'status' => $statuses[0],
             'user_id' => $user->id
         ]);
-        shuffle($genres);
-        shuffle($statuses);
-        $album = Album::create([
-            'name' => Faker::create()->company,
-            'genre' => $genres[0],
-            'cover' => Faker::create()->image('/tmp'),
-            'status' => $statuses[0],
-            'best' => !! rand(0, 1),
-            'artist_id' => $artist->id
-        ]);
         for ($i = 0; $i < rand(5, 15); $i++) {
+            shuffle($genres);
+            $instrumental = !! rand(0, 1);
             Song::create([
-                'name' => Faker::create()->company,
+                'title' => Faker::create()->company,
+                'artist' => Faker::create()->name,
+                'composer' => Faker::create()->name,
+                'lyrics' => $instrumental ? '' : Faker::create()->name,
+                'genre' => $genres[0],
+                'language' => 'English',
+                'instrumental' => $instrumental,
+                'explicit' => !! rand(0, 1),
                 'file' => Faker::create()->image('/tmp'),
-                'best' => !! rand(0, 1),
-                'album_id' => $album->id
+                'release_id' => $release->id
             ]);
         }
 
@@ -88,34 +83,37 @@ class DataSeeder extends Seeder
                 'name' => Faker::create()->name,
                 'email' => Faker::create()->email,
                 'password' => Hash::make('user'),
+                'company' => Faker::create()->company,
+                'phone' => Faker::create()->phonenumber,
                 'admin' => false
             ]);
-            $artist = Artist::create([
-                'name' => Faker::create()->name,
-                'photo' => Faker::create()->image('/tmp'),
-                'url' => Faker::create()->url,
-                'bio' => Faker::create()->text,
-                'user_id' => $user->id
-            ]);
-            // Create 1-5 Albums
+            // Create 1-5 Releases
             for ($a = 0; $a < rand(1, 5); $a++) {
-                shuffle($genres);
                 shuffle($statuses);
-                $album = Album::create([
-                    'name' => Faker::create()->company,
-                    'genre' => $genres[0],
-                    'cover' => Faker::create()->image('/tmp'),
+                $release = Release::create([
+                    'title' => Faker::create()->company,
+                    'artist' => Faker::create()->name,
+                    'artwork' => Faker::create()->image('/tmp'),
                     'status' => $statuses[0],
-                    'best' => !! rand(0, 1),
-                    'artist_id' => $artist->id
+                    'user_id' => $user->id
                 ]);
-                // Create 5-15 random songs
-                Song::create([
-                    'name' => Faker::create()->company,
-                    'file' => Faker::create()->image('/tmp'),
-                    'best' => !! rand(0, 1),
-                    'album_id' => $album->id
-                ]);
+                for ($i = 0; $i < rand(5, 15); $i++) {
+                    // Create 5-15 random songs
+                    shuffle($genres);
+                    $instrumental = !! rand(0, 1);
+                    Song::create([
+                        'title' => Faker::create()->company,
+                        'artist' => Faker::create()->name,
+                        'composer' => Faker::create()->name,
+                        'lyrics' => $instrumental ? '' : Faker::create()->name,
+                        'genre' => $genres[0],
+                        'language' => 'English',
+                        'instrumental' => $instrumental,
+                        'explicit' => !! rand(0, 1),
+                        'file' => Faker::create()->image('/tmp'),
+                        'release_id' => $release->id
+                    ]);
+                }
             }
         }
     }
