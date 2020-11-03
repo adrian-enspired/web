@@ -97,7 +97,7 @@ class DataSeeder extends Seeder
                     'status' => $statuses[0],
                     'user_id' => $user->id
                 ]);
-                for ($i = 0; $i < rand(5, 15); $i++) {
+                for ($s = 0; $s < rand(5, 15); $s++) {
                     // Create 5-15 random songs
                     shuffle($genres);
                     $instrumental = !! rand(0, 1);

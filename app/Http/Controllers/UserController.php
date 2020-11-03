@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response(['users' => User::all()]);
+        return response(User::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return response(['user' => $user]);
+        return response($user);
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->admin = $request->get('admin') ?? 0;
         $user->save();
 
-        return response(['user' => $user]);
+        return response($user);
     }
 
     /**

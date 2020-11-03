@@ -13,9 +13,9 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->admin) {
-            return redirect('/admin');
+            return redirect('/admin/dashboard');
         } else {
-            return redirect('/app');
+            return redirect('/app/dashboard');
         }
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Release;
+use Creativeorange\Gravatar\Facades\Gravatar;
 
 class User extends Authenticatable
 {
@@ -42,7 +42,6 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
-        'admin'
     ];
 
     /**
@@ -60,25 +59,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'profile_photo_url'
+        'profile_photo_url',
     ];
 
     /**
-     * Get the releases associated with this user
+     * Get the default profile photo URL if no profile photo has been uploaded.
      *
+     * @return string
      */
-    public function releases()
+    protected function defaultProfilePhotoUrl() : string
     {
-        return $this->hasMany(Release::class);
+        return ($this->email && Gravatar::exists($this->email)) ?
+            Gravatar::get($this->email) :
+            'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
     }
 
     /**
-     * Is this user an admin?
-     *
-     * @return bool
+     * Get color of admin label
      */
-    public function isAdmin() : bool
-    {
-        return $this->admin;
+    public function getAdminColorAttribute() : string {
+        return $this->admin ? 'green' : 'red';
     }
 }

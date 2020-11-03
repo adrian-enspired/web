@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use App\Http\Middleware\IsAdmin;
 
+use App\Http\Livewire\Admin\ {
+    Dashboard as AdminDashboard,
+    Users as AdminUsers
+};
+
+use App\Http\Livewire\App\Dashboard as AppDashboard;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,20 +23,28 @@ use App\Http\Middleware\IsAdmin;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('dashboard', function () {
+    return view('dashboard');
+});
+
 // Wildcard route for angular to catch app pages
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/app/{anything?}', function ($anything = null) {
-        return View::make('app');
+        return view('app');
     })->where('anything', '(.*)');
 
-// Wildcard route for angular to catch on admin pages
-Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])
-    ->get('/admin/{anything?}', function ($anything = null) {
-        return View::make('admin');
-    })->where('anything', '(.*)');
+// Admin only routes
+Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')->group(function () {
+    Route::get('/dashboard', AdminDashboard::class);
+    Route::get('/users', AdminUsers::class);
+});
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware(['auth:sanctum', 'verified'])->prefix('app')->group(function() {
+    Route::get('/dashboard', AppDashboard::class);
 });
 
 Route::get('redirects', 'App\Http\Controllers\HomeController@index');
