@@ -77,8 +77,8 @@ class DataSeeder extends Seeder
             ]);
         }
 
-        // Create 10 random users
-        for ($i = 0; $i < 10; $i++) {
+        // Create 20 random users
+        for ($i = 0; $i < 20; $i++) {
             $user = User::create([
                 'name' => Faker::create()->name,
                 'email' => Faker::create()->email,
