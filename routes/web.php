@@ -12,7 +12,7 @@ use App\Http\Livewire\Admin\ {
 };
 
 use App\Http\Livewire\App\Dashboard as AppDashboard;
-
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +29,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('dashboard', function () {
-    return view('dashboard');
+    return redirect('redirects');
 });
+
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 // Wildcard route for angular to catch app pages
 Route::middleware(['auth:sanctum', 'verified'])
