@@ -6,7 +6,9 @@ use App\Http\Middleware\IsAdmin;
 
 use App\Http\Livewire\Admin\ {
     Dashboard as AdminDashboard,
-    Users as AdminUsers
+    Users as AdminUsers,
+    User\Show as AdminUserShow,
+    Releases as AdminReleases
 };
 
 use App\Http\Livewire\App\Dashboard as AppDashboard;
@@ -40,6 +42,8 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')->group(function () {
     Route::get('/dashboard', AdminDashboard::class);
     Route::get('/users', AdminUsers::class);
+    Route::get('/user/{id}', AdminUserShow::class);
+    Route::get('/releases', AdminReleases::class);
 });
 
 

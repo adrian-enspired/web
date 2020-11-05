@@ -59,10 +59,17 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
+        <!-- Email -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="email" value="{{ __('Email') }}" />
+            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <x-jet-input-error for="email" class="mt-2" />
+        </div>
+
         <!-- Company -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="company" value="{{ __('Company') }}" />
-            <x-jet-input id="company" type="text" class="mt-1 block w-full" wire:model.defer="state.company" autocomplete="name" />
+            <x-jet-input id="company" type="text" class="mt-1 block w-full" wire:model.defer="state.company" autocomplete="company" />
             <x-jet-input-error for="company" class="mt-2" />
         </div>
 
@@ -73,12 +80,6 @@
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
 
-        <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
-            <x-jet-input-error for="email" class="mt-2" />
-        </div>
     </x-slot>
 
     <x-slot name="actions">

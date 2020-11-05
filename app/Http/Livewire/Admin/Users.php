@@ -70,7 +70,7 @@ class Users extends Component
         return view('livewire.admin.users', [
             'users' => User::search('name', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10)
         ])->layout('layouts.admin', [
-                'page' => 'users'
-            ]);
+            'page' => 'users'
+        ]);
     }
 }

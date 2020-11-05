@@ -33,11 +33,11 @@
                                 @forelse ($users as $user)
                                     <x-table.row wire:loading.class.delay="opacity-50">
                                         <x-table.cell>
-                                            <span class="inline-flex space-x-2 truncate text-sn leading-5">
-                                                <p class="text-cool-gray-600 truncate">
-                                                    {{ $user->name }}
+                                            <a href="/admin/user/{{ $user->id }}" class="group inline-flex space-x-2 truncate text-sm leading-5">
+                                                <p class="text-cool-gray-800 truncate group-hover:text-cool-gray-900 transition ease-in-out duration-150">
+                                                    <strong>{{ $user->name }}</strong>
                                                 </p>
-                                            </span>
+                                            </a>
                                         </x-table.cell>
                                         <x-table.cell>
                                             <span class="inline-flex space-x-2 truncate text-sn leading-5">

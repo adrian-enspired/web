@@ -42,4 +42,21 @@ class Release extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get color of admin label
+     */
+    public function getStatusColorAttribute() : string
+    {
+        switch ($this->status) {
+            case "In Progress":
+                return 'yellow';
+            case "Published":
+                return 'green';
+            case "Removed":
+                return 'red';
+            default:
+                return 'cyan';
+        }
+    }
 }
