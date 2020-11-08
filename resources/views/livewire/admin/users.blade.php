@@ -102,6 +102,9 @@
                     <x-input.group for="password" label="Password" :error="$errors->first('editing.password')">
                         <x-input.password wire:model.defer="editing.password" id="password" />
                     </x-input.group>
+                    <x-input.group for="password_confirmation" label="Password Confirmation" :error="$errors->first('editing.password_confirmation')">
+                        <x-input.password wire:model.defer="editing.password_confirmation" id="password_confirmation" />
+                    </x-input.group>
                 @endunless
                 <x-input.group for="company" label="Company" :error="$errors->first('editing.company')">
                     <x-input.text wire:model.defer="editing.company" id="company" />

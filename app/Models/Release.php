@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Song;
 use App\Models\User;
@@ -23,6 +24,15 @@ class Release extends Model
         'artwork',
         'status',
         'user_id'
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'release_artwork_url',
     ];
 
     /**
@@ -58,5 +68,17 @@ class Release extends Model
             default:
                 return 'cyan';
         }
+    }
+
+    /**
+     * Get the URL to the release artwork.
+     *
+     * @return string
+     */
+    public function getReleaseArtworkUrlAttribute()
+    {
+        return $this->artwork
+            ? Storage::url($this->artwork)
+            : Storage::url('default_release.jpg');
     }
 }

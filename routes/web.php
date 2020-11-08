@@ -8,7 +8,8 @@ use App\Http\Livewire\Admin\ {
     Dashboard as AdminDashboard,
     Users as AdminUsers,
     User\Show as AdminUserShow,
-    Releases as AdminReleases
+    Releases as AdminReleases,
+    Release\Show as AdminReleaseShow
 };
 
 use App\Http\Livewire\App\Dashboard as AppDashboard;
@@ -28,18 +29,16 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('dashboard', function () {
     return redirect('redirects');
-});
+})->name('dashboard');
 
 Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::get('auth/facebook', [LoginController::class, 'redirectToFacebook']);
+Route::get('auth/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
 
-// Wildcard route for angular to catch app pages
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/app/{anything?}', function ($anything = null) {
-        return view('app');
-    })->where('anything', '(.*)');
 
 // Admin only routes
 Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')->group(function () {
@@ -47,6 +46,7 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')
     Route::get('/users', AdminUsers::class);
     Route::get('/user/{id}', AdminUserShow::class);
     Route::get('/releases', AdminReleases::class);
+    Route::get('/release/{id}', AdminReleaseShow::class);
 });
 
 

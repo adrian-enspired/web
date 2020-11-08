@@ -27,10 +27,11 @@ class Users extends Component
         return [
             'editing.name' => 'required|string',
             'editing.email' => 'required|email|unique:users,email,' . $id,
-            'editing.company' => 'string',
-            'editing.phone' => 'string',
+            'editing.company' => 'nullable|string',
+            'editing.phone' => 'nullable|string',
             'editing.admin' => 'boolean',
             'editing.password' => $password_rules,
+            'editing.password_confirmation' => ''
         ];
     }
 
@@ -61,6 +62,8 @@ class Users extends Component
         if ($this->editing->id) {
             unset($this->editing->password);
         }
+
+        unset($this->editing->password_confirmation);
         $this->editing->save();
         $this->showEditModal = false;
     }
@@ -68,7 +71,7 @@ class Users extends Component
     public function render()
     {
         return view('livewire.admin.users', [
-            'users' => User::search('name', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10)
+            'users' => User::search(['name', 'email'], $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10)
         ])->layout('layouts.admin', [
             'page' => 'users'
         ]);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Release;
 
 class Song extends Model
@@ -38,6 +39,15 @@ class Song extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'song_url',
+    ];
+
+    /**
      * Get the release that is associated with this song.
      *
      */
@@ -54,5 +64,17 @@ class Song extends Model
     public function getID3() : array
     {
         return json_decode($this->id3, true);
+    }
+
+        /**
+     * Get the URL to the Song.
+     *
+     * @return string
+     */
+    public function getSongUrlAttribute()
+    {
+        return $this->file
+            ? Storage::url($this->file)
+            : '';
     }
 }

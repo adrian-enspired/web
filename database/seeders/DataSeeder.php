@@ -53,16 +53,18 @@ class DataSeeder extends Seeder
             'admin' => false
         ]);
         shuffle($statuses);
+        $artwork = 'releases/' . rand(1, 14) . '.jpg';
         $release = Release::create([
             'title' => Faker::create()->company,
             'artist' => Faker::create()->name,
-            'artwork' => Faker::create()->image('/tmp'),
+            'artwork' => $artwork,
             'status' => $statuses[0],
             'user_id' => $user->id
         ]);
         for ($i = 0; $i < rand(5, 15); $i++) {
             shuffle($genres);
             $instrumental = !! rand(0, 1);
+            $song = 'songs/' . rand(1, 14) . '.mp3';
             Song::create([
                 'title' => Faker::create()->company,
                 'artist' => Faker::create()->name,
@@ -72,7 +74,7 @@ class DataSeeder extends Seeder
                 'language' => 'English',
                 'instrumental' => $instrumental,
                 'explicit' => !! rand(0, 1),
-                'file' => Faker::create()->image('/tmp'),
+                'file' => $song,
                 'release_id' => $release->id
             ]);
         }
@@ -90,10 +92,11 @@ class DataSeeder extends Seeder
             // Create 1-5 Releases
             for ($a = 0; $a < rand(1, 5); $a++) {
                 shuffle($statuses);
+                $artwork = 'releases/' . rand(1, 14) . '.jpg';
                 $release = Release::create([
                     'title' => Faker::create()->company,
                     'artist' => Faker::create()->name,
-                    'artwork' => Faker::create()->image('/tmp'),
+                    'artwork' => $artwork,
                     'status' => $statuses[0],
                     'user_id' => $user->id
                 ]);
@@ -101,6 +104,7 @@ class DataSeeder extends Seeder
                     // Create 5-15 random songs
                     shuffle($genres);
                     $instrumental = !! rand(0, 1);
+                    $song = 'songs/' . rand(1, 14) . '.mp3';
                     Song::create([
                         'title' => Faker::create()->company,
                         'artist' => Faker::create()->name,
@@ -110,7 +114,7 @@ class DataSeeder extends Seeder
                         'language' => 'English',
                         'instrumental' => $instrumental,
                         'explicit' => !! rand(0, 1),
-                        'file' => Faker::create()->image('/tmp'),
+                        'file' => $song,
                         'release_id' => $release->id
                     ]);
                 }
