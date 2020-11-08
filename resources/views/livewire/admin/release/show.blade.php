@@ -144,6 +144,7 @@
                 <div class="row text-center m-t-10">
                     <div class="col-md-3"></div>
                     <div class="col-md-6 m-t-25 m-b-0 p-b-0 h-10">
+                        {{-- @TODO: make this better --}}
                         <audio controls>
                             <source src="{{ $song->song_url }}" />
                         </audio>
