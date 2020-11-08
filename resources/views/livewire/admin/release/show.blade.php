@@ -49,6 +49,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title">Songs</h5>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
