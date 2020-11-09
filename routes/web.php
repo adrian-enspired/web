@@ -34,11 +34,8 @@ Route::get('dashboard', function () {
     return redirect('redirects');
 })->name('dashboard');
 
-Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
-Route::get('auth/facebook', [LoginController::class, 'redirectToFacebook']);
-Route::get('auth/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
-
+Route::get('auth/{provider}', [LoginController::class, 'redirectToGoogle']);
+Route::get('auth/{provider}/callback', [LoginController::class, 'handleGoogleCallback']);
 
 // Admin only routes
 Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')->group(function () {

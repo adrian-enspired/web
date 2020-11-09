@@ -10,109 +10,72 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
+
+    /** @var array Supported providers */
+    const SUPPORTED_PROVIDERS = [
+        'google',
+        'facebook',
+        'instagram',
+        'yahoo',
+        'vkontakte',
+        'yandex'
+    ];
+
     /**
-     * Redirect the user to the Google authentication page.
+     * Redirect to specified provider
      *
-     * @return \Illuminate\Http\Response
+     * @param string $provider
      */
-    public function redirectToGoogle()
+    public function redirectToProvider(string $provider)
     {
-        return Socialite::driver('google')->redirect();
+        if (! in_array($provider, self::SUPPORTED_PROVIDERS)) {
+            abort(404);
+        }
+
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
-     * Obtain the user information from Google.
+     * Obtain user information from provider
      *
+     * @param string $provider
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function handleGoogleCallback()
+    public function handleProviderCallback(string $provider)
     {
-        try {
-            //create a user using socialite driver google
-            $user = Socialite::driver('google')->user();
-            // if the user exits, use that user and login
-            $finduser = User::where('google_id', $user->id)->first();
-            if (! $finduser) {
-              $finduser = User::where('email', $user->email)->first();
-            }
-            if ($finduser) {
-                //if the user exists, login and show dashboard
-                Auth::login($finduser);
-                if (! $finduser->google_id) {
-                  $finduser->google_id = $user->id;
-                  $finduser->save();
-                }
-                return redirect('redirects');
-            } else {
-                //user is not yet created, so create first
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    // @TODO REMOVE ME
-                    'admin' => true,
-                    'google_id'=> $user->id,
-                    'password' => encrypt('')
-                ]);
-
-                $newUser->save();
-                //login as the new user
-                Auth::login($newUser);
-                // go to the dashboard
-                return redirect('redirects');
-            }
-            //catch exceptions
-        } catch (Exception $e) {
-            return redirect('user/login');
+        if (! in_array($provider, self::SUPPORTED_PROVIDERS)) {
+            abort(404);
         }
-    }
 
-    /**
-     * Redirect the user to the Facebook authentication page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
-
-    public function handleFacebookCallback()
-    {
         try {
-            //create a user using socialite driver facebook
-            $user = Socialite::driver('facebook')->user();
-            // if the user exits, use that user and login
-            $finduser = User::where('facebook_id', $user->id)->first();
+            $social_user = Socialite::driver($provider)->user();
+            $id_field = "{$provider}_id";
+
+            // check our ID fields first
+            $user = User::where($id_field, $social_user->id)->first();
+            // Now check against email addresses
             if (! $finduser) {
-              $finduser = User::where('email', $user->email)->first();
+                $user = User::where('email', $social_user->email)->first();
             }
-            if ($finduser) {
-                //if the user exists, login and show dashboard
-                Auth::login($finduser);
-                if (! $finduser->facebook_id) {
-                  $finduser->facebook_id = $user->id;
-                  $finduser->save();
-                }
-                return redirect('redirects');
-            } else {
-                //user is not yet created, so create first
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
+
+            // Still nothing? Create the user
+            if (! $user) {
+                $user = User::create([
+                    'name' => $social_user->name,
+                    'email' => $social_user->email,
                     // @TODO REMOVE ME
                     'admin' => true,
-                    'facebook_id'=> $user->id,
+                    $id_field => $social_user->id,
                     'password' => encrypt('')
                 ]);
-
-                $newUser->save();
-                //login as the new user
-                Auth::login($newUser);
-                // go to the dashboard
-                return redirect('redirects');
+                $user->save();
             }
-            //catch exceptions
+
+            // Login, and redirect to applicable dashboard
+            Auth::login($user);
+            return redirect('redirects');
         } catch (Exception $e) {
+            // Something failed, send back to login screen
             return redirect('user/login');
         }
     }

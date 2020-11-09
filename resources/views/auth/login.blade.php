@@ -33,14 +33,7 @@
                   </div>
                   <div class="row">
                       <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                          <div class="social">
-                              @if (config('services.facebook.client_id'))
-                                  <a href="{{ url('auth/facebook') }}" class="btn btn-facebook" data-toggle="tooltip" title="" data-original-title="Login with Facebook"> <i aria-hidden="true" class="fab fa-facebook-f"></i> </a>
-                              @endif
-                              @if (config('services.google.client_id'))
-                                  <a href="{{ url('auth/google') }}" class="btn btn-googleplus" data-toggle="tooltip" title="" data-original-title="Login with Google"> <i aria-hidden="true" class="fab fa-google-plus-g"></i> </a>
-                              @endif
-                          </div>
+                          <x-social-login />
                       </div>
                   </div>
                   <div class="form-group m-b-0">
