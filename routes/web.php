@@ -14,6 +14,7 @@ use App\Http\Livewire\Admin\ {
 
 use App\Http\Livewire\App\Dashboard as AppDashboard;
 use App\Http\Controllers\ {
+    HomeController,
     Auth\LoginController,
     TermsOfServiceController
 };
@@ -29,9 +30,7 @@ use App\Http\Controllers\ {
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'render']);
 
 Route::get('dashboard', function () {
     return redirect('redirects');
@@ -58,4 +57,4 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('app')->group(function()
     Route::get('/dashboard', AppDashboard::class);
 });
 
-Route::get('redirects', 'App\Http\Controllers\HomeController@index');
+Route::get('redirects', [HomeController::class, 'redirects']);
