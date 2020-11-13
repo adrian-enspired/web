@@ -14,7 +14,6 @@ class LoginController extends Controller
     /** @var array Supported providers */
     const SUPPORTED_PROVIDERS = [
         'google',
-        'facebook',
         'instagram',
         'yahoo',
         'vkontakte',
@@ -54,7 +53,7 @@ class LoginController extends Controller
             // check our ID fields first
             $user = User::where($id_field, $social_user->id)->first();
             // Now check against email addresses
-            if (! $finduser) {
+            if (! $user) {
                 $user = User::where('email', $social_user->email)->first();
             }
 
@@ -76,7 +75,7 @@ class LoginController extends Controller
             return redirect('redirects');
         } catch (Exception $e) {
             // Something failed, send back to login screen
-            return redirect('user/login');
+            return redirect('/login');
         }
     }
 }

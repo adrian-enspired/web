@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Release;
-use App\Actions\Sortable;
+use App\Traits\Sortable;
 use App\Models\User;
 
 class Releases extends Component

@@ -33,6 +33,7 @@
                                 @forelse ($users as $user)
                                     <x-table.row wire:loading.class.delay="opacity-50">
                                         <x-table.cell>
+                                            <x-button.link wire:click="loginAsUser({{ $user->id }})" class="fas fa-user p-r-10" title="Login as {{ $user->name }}"></x-button.link>
                                             <a href="/admin/user/{{ $user->id }}" class="group inline-flex space-x-2 truncate text-sm leading-5">
                                                 <p class="text-cool-gray-800 truncate group-hover:text-cool-gray-900 transition ease-in-out duration-150">
                                                     <strong>{{ $user->name }}</strong>

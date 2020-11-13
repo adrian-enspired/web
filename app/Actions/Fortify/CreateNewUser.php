@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'company' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:48'],
             'password' => $this->passwordRules(),
+            'terms' => ['required', 'accepted']
         ])->validate();
 
         return User::create([

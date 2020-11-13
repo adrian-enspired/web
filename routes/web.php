@@ -13,7 +13,10 @@ use App\Http\Livewire\Admin\ {
 };
 
 use App\Http\Livewire\App\Dashboard as AppDashboard;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ {
+    Auth\LoginController,
+    TermsOfServiceController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +37,11 @@ Route::get('dashboard', function () {
     return redirect('redirects');
 })->name('dashboard');
 
-Route::get('auth/{provider}', [LoginController::class, 'redirectToGoogle']);
-Route::get('auth/{provider}/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::get('auth/{provider}', [LoginController::class, 'redirectToProvider']);
+Route::get('auth/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
+
+// TOS route
+Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
 
 // Admin only routes
 Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')->group(function () {
@@ -43,6 +49,7 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')
     Route::get('/users', AdminUsers::class);
     Route::get('/user/{id}', AdminUserShow::class);
     Route::get('/releases', AdminReleases::class);
+    Route::get('/release/{id}.zip', [AdminReleaseShow::class, 'downloadRelease']);
     Route::get('/release/{id}', AdminReleaseShow::class);
 });
 

@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Creativeorange\Gravatar\Facades\Gravatar;
+use App\Traits\Encryptable;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;
+    use Encryptable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,7 +32,16 @@ class User extends Authenticatable
         'company',
         'phone',
         'admin',
-        'google_id'
+        'address',
+        'paypal_email',
+        'bank_account_info',
+        'google_id',
+        'instagram_id',
+        'twitter_id',
+        'linkedin_id',
+        'yahoo_id',
+        'yandex_id',
+        'vkontakte_id'
     ];
 
     /**
@@ -42,8 +52,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
+    ];
+
+    /**
+     * The attributes that should be encrypted
+     *
+     * @var array
+     */
+    protected $encryptable = [
+        'bank_account_info'
     ];
 
     /**

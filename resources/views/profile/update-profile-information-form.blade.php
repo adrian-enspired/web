@@ -80,6 +80,27 @@
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
 
+        <!-- Mailing Address -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="address" value="{{ __('Mailing Address') }}" />
+            <x-input.textarea id="address" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model.defer="state.address" />
+            <x-jet-input-error for="address" class="mt-2" />
+        </div>
+
+        <!-- Paypal Email -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="paypal_email" value="{{ __('PayPal Address') }}" />
+            <x-jet-input id="paypal_email" type="email" class="mt-1 block w-full" wire:model.defer="state.paypal_email" />
+            <x-jet-input-error for="paypal_email" class="mt-2" />
+        </div>
+
+        <!-- Bank Account Information -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="bank_account_info" value="{{ __('Bank Account Information') }}" />
+            <x-input.textarea id="bank_account_info" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model.defer="state.bank_account_info" />
+            <x-jet-input-error for="bank_account_info" class="mt-2" />
+        </div>
+
     </x-slot>
 
     <x-slot name="actions">

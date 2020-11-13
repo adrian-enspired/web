@@ -66,6 +66,7 @@ class DataSeeder extends Seeder
             $instrumental = !! rand(0, 1);
             $song = 'songs/' . rand(1, 14) . '.mp3';
             Song::create([
+                'track_number' => $i+1,
                 'title' => Faker::create()->company,
                 'artist' => Faker::create()->name,
                 'composer' => Faker::create()->name,
@@ -106,6 +107,7 @@ class DataSeeder extends Seeder
                     $instrumental = !! rand(0, 1);
                     $song = 'songs/' . rand(1, 14) . '.mp3';
                     Song::create([
+                        'track_number' => $s+1,
                         'title' => Faker::create()->company,
                         'artist' => Faker::create()->name,
                         'composer' => Faker::create()->name,

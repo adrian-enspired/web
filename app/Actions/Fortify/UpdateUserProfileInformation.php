@@ -23,6 +23,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'company' => ['nullable', 'string', 'max:255'],
             'phone' => ['nullable', 'string', 'max:48'],
+            'address' => ['nullable', 'string'],
+            'paypal_email' => ['nullable', 'email'],
+            'bank_account_info' => ['nullable', 'string'],
             'photo' => ['nullable', 'image', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
@@ -39,6 +42,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'company' => $input['company'],
                 'phone' => $input['phone'],
                 'email' => $input['email'],
+                'address' => $input['address'],
+                'paypal_email' => $input['paypal_email'],
+                'bank_account_info' => $input['bank_account_info']
             ])->save();
         }
     }
@@ -58,6 +64,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'phone' => $input['phone'],
             'email' => $input['email'],
             'email_verified_at' => null,
+            'address' => $input['address'],
+            'paypal_email' => $input['paypal_email'],
+            'bank_account_info' => $input['bank_account_info']
         ])->save();
 
         $user->sendEmailVerificationNotification();

@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Release;
 
+use Zip;
+use Illuminate\Support\Facades\Storage;
+
 use Livewire\Component;
 use App\Models\Release;
 use App\Models\Song;
@@ -30,5 +33,17 @@ class Show extends Component
     {
         $this->song = $song;
         $this->showSongModal = true;
+    }
+
+
+    public function downloadRelease($id)
+    {
+        $release = Release::find($id);
+        $zip = Zip::create("{$release->id}.zip");
+        $zip->add(Storage::disk('public')->path($release->artwork));
+        foreach ($release->songs as $song) {
+            $zip->add(Storage::disk('public')->path($song->file));
+        }
+        return $zip;
     }
 }

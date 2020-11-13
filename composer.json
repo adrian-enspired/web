@@ -19,7 +19,9 @@
         "laravel/sanctum": "^2.6",
         "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.0",
+        "league/commonmark": "^1.5",
         "livewire/livewire": "2.3.*",
+        "stechstudio/laravel-zipstream": "^2.6",
         "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {

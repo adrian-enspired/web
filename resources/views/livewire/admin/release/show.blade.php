@@ -7,7 +7,17 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="card">
-                <div class="user-bg"> <img width="100%" src="{{ $release->release_artwork_url }}"> </div>
+                <div class="user-bg">
+                    <img width="100%" src="{{ $release->release_artwork_url }}">
+                    <div class="row text-center m-t-10">
+                        <div class="col-sm-6">
+                            <a href="{{ $release->release_artwork_url }}" class="btn btn-info btn-xs" download>Download Cover</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="/admin/release/{{ $release->id }}.zip" class="btn btn-warning btn-xs" download>Download Release</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <!-- .row -->
                     <div class="row text-center m-t-10">
@@ -54,6 +64,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Track #</th>
                                     <th>Title</th>
                                     <th>Artist</th>
                                     <th>Genre</th>
@@ -64,6 +75,7 @@
                             <tbody>
                                 @foreach ($release->songs as $song)
                                     <tr>
+                                        <td>{{ $song->track_number }}</td>
                                         <td>
                                             <a href="javascript:void(0);" class="group inline-flex space-x-2 truncate text-sm leading-5" wire:click="showSong({{ $song->id }})">
                                                 <p class="text-cool-gray-800 truncate group-hover:text-cool-gray-900 transition ease-in-out duration-150">

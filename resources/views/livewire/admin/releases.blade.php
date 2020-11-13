@@ -17,9 +17,10 @@
                     <div class="flex-column space-y-4">
                         <x-table>
                             <x-slot name="head">
+                                <x-table.heading/>
                                 <x-table.heading sortable wire:click="sortBy('title')" :direction="$sortField === 'title' ? $sortDirection : null">Title</x-table.heading>
                                 <x-table.heading sortable wire:click="sortBy('artist')" :direction="$sortField === 'artist' ? $sortDirection : null">Artist</x-table.heading>
-                                <x-table.heading sortable wire:click="sortBy('user_id')" :direction="$sortField === 'user_id' ? $sortDirection : null">Owner</x-table.heading>
+                                <x-table.heading sortable wire:click="sortBy('user_id')" :direction="$sortField === 'user_id' ? $sortDirection : null">User</x-table.heading>
                                 <x-table.heading sortable wire:click="sortBy('status')" :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.heading>
                                 <x-table.heading sortable wire:click="sortBy('updated_at')" :direction="$sortField === 'updated_at' ? $sortDirection : null">Updated On</x-table.heading>
                                 <x-table.heading/>
@@ -27,6 +28,9 @@
                             <x-slot name="body">
                                 @forelse ($releases as $release)
                                     <x-table.row wire:loading.class.delay="opacity-50">
+                                        <x-table.cell>
+                                            <img src="{{ $release->release_artwork_url }}">
+                                        </x-table.cell>
                                         <x-table.cell>
                                             <a href="/admin/release/{{ $release->id }}" class="group inline-flex space-x-2 truncate text-sm leading-5">
                                                 <p class="text-cool-gray-800 truncate group-hover:text-cool-gray-900 transition ease-in-out duration-150">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFacebookIdToUsersTable extends Migration
+class AddPaypalAndBankInfoToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class AddFacebookIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('facebook_id')
-                ->after('google_id')
+            $table->text('paypal_email')
+                ->after('admin')
+                ->nullable();
+            $table->longText('bank_account_info')
+                ->after('admin')
                 ->nullable();
         });
     }
@@ -28,7 +31,8 @@ class AddFacebookIdToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('facebook_id');
+            $table->dropColumn('paypal_email');
+            $table->dropColumn('bank_account_info');
         });
     }
 }

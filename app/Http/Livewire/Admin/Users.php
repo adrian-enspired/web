@@ -5,8 +5,9 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User;
-use App\Actions\Sortable;
+use App\Traits\Sortable;
 use App\Actions\Fortify\PasswordValidationRules;
+use Illuminate\Support\Facades\Auth;
 
 class Users extends Component
 {
@@ -71,9 +72,15 @@ class Users extends Component
     public function render()
     {
         return view('livewire.admin.users', [
-            'users' => User::search(['name', 'email'], $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10)
+            'users' => User::search(['name', 'email', 'company'], $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(10)
         ])->layout('layouts.admin', [
             'page' => 'users'
         ]);
+    }
+
+    public function loginAsUser(User $user)
+    {
+        Auth::login($user);
+        return redirect('redirects');
     }
 }
