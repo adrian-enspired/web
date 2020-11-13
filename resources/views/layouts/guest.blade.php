@@ -38,7 +38,7 @@
                 <p class="loader__label">WMA Label</p>
             </div>
         </div>
-        <section id="wrapper">
+        <section id="wrapper" class="wma-bg">
             {{ $slot }}
         </section>
     </body>

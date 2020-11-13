@@ -21,6 +21,12 @@
         "laravel/tinker": "^2.0",
         "league/commonmark": "^1.5",
         "livewire/livewire": "2.3.*",
+        "socialiteproviders/instagram": "^4.0",
+        "socialiteproviders/linkedin": "^4.0",
+        "socialiteproviders/twitter": "^4.0",
+        "socialiteproviders/vkontakte": "^4.2",
+        "socialiteproviders/yahoo": "^4.0",
+        "socialiteproviders/yandex": "^4.0",
         "stechstudio/laravel-zipstream": "^2.6",
         "tightenco/ziggy": "^0.9.4"
     },

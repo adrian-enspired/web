@@ -32,6 +32,10 @@ File: scss
 .skin-default .topbar {
   background: #4F5467; }
 
+.wma-bg {
+  background-image: url(/assets/img/BG/bodyBG.jpg);
+}
+
 .skin-green {
   /*Theme Colors*/ }
   .skin-green .topbar {
@@ -364,7 +368,8 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #edf1f5; }
+  background-color: #edf1f5;
+}
 
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }
@@ -22080,7 +22085,8 @@ File: scss
       line-height: 100px; }
   .login-register {
     position: relative;
-    overflow: hidden; }
+    overflow: hidden;
+  }
   .login-box {
     width: 90%; }
   .login-sidebar {
