@@ -21,7 +21,6 @@
             <!-- Column -->
             <div class="col-lg-4 col-xlg-3 col-md-5">
                 <div class="card upload-artwork">
-                    <label for="input-file-now">Your so fresh input file — Default version</label>
                     <input type="file" name="cover_artwork" id="cover_artwork" />
                 </div>
                 <div class="card">
