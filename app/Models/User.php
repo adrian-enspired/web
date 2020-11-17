@@ -99,4 +99,13 @@ class User extends Authenticatable
     public function getAdminColorAttribute() : string {
         return $this->admin ? 'green' : 'red';
     }
+
+    /**
+     * Get the songs that are associated with this release.
+     *
+     */
+    public function releases()
+    {
+        return $this->hasMany(Release::class);
+    }
 }

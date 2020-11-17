@@ -12,7 +12,12 @@ use App\Http\Livewire\Admin\ {
     Release\Show as AdminReleaseShow
 };
 
-use App\Http\Livewire\App\Dashboard as AppDashboard;
+use App\Http\Livewire\App\ {
+    Dashboard as AppDashboard,
+    Releases as AppReleases,
+    Release\Upload as AppReleaseUpload
+};
+
 use App\Http\Controllers\ {
     HomeController,
     Auth\LoginController,
@@ -55,6 +60,8 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')
 
 Route::middleware(['auth:sanctum', 'verified'])->prefix('app')->group(function() {
     Route::get('/dashboard', AppDashboard::class);
+    Route::get('/releases', AppReleases::class);
+    Route::get('/release/upload', AppReleaseUpload::class);
 });
 
 Route::get('redirects', [HomeController::class, 'redirects']);

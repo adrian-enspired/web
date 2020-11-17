@@ -20,3 +20,4 @@ npm-debug.log
 yarn-error.log
 .vagrant
 **/.DS_Store
+.vscode
