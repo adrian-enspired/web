@@ -21,7 +21,8 @@ use App\Http\Livewire\App\ {
 use App\Http\Controllers\ {
     HomeController,
     Auth\LoginController,
-    TermsOfServiceController
+    TermsOfServiceController,
+    SongController
 };
 
 /*
@@ -62,6 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('app')->group(function()
     Route::get('/dashboard', AppDashboard::class);
     Route::get('/releases', AppReleases::class);
     Route::get('/release/upload', AppReleaseUpload::class);
+    Route::post('song/upload', [SongController::class, 'store'])->name('song.upload');
 });
 
 Route::get('redirects', [HomeController::class, 'redirects']);

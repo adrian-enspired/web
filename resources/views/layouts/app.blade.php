@@ -10,8 +10,9 @@
     <title>WMALabel</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
 
-    <link rel="stylesheet" href="/assets/node_modules/dropify/dist/css/dropify.min.css">
-    <link rel="stylesheet" href="/dist/js/jPlayer/jplayer.flat.css" type="text/css" />
+    <link href="/assets/node_modules/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+    <link href="/assets/node_modules/dropzone-master/dist/dropzone.css" rel="stylesheet" />
+    <link href="/dist/js/jPlayer/jplayer.flat.css" rel="stylesheet" />
     <link href="/dist/app/css/pages/user-card.css" rel="stylesheet">
     <link href="/dist/app/css/style.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -97,6 +98,7 @@
         <script src="/dist/app/js/custom.min.js"></script>
         <script src="/assets/node_modules/peity/jquery.peity.min.js"></script>
         <script src="/assets/node_modules/dropify/dist/js/dropify.min.js"></script>
+        <script src="/assets/node_modules/dropzone-master/dist/dropzone.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer=""></script>
         @livewireScripts
     </body>

@@ -472,7 +472,7 @@ a:not([href]) {
     text-decoration: none; }
 
 .upload-artwork {
-  height: 50%;
+  height: 100%;
 }
 .upload-artwork .dropify-wrapper {
   height: 100%;

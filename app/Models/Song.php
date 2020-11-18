@@ -27,6 +27,7 @@ class Song extends Model
         'instrumental',
         'explicit',
         'file',
+        'original_filename',
         'release_id'
     ];
 

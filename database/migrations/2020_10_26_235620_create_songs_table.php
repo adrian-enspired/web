@@ -15,12 +15,12 @@ class CreateSongsTable extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('artist');
-            $table->string('composer');
+            $table->string('title')->nullable();
+            $table->string('artist')->nullable();
+            $table->string('composer')->nullable();
             $table->string('lyrics')->nullable();
-            $table->string('genre');
-            $table->string('language');
+            $table->string('genre')->nullable();
+            $table->string('language')->default('English');
             $table->boolean('instrumental')->default(false);
             $table->boolean('explicit')->default(false);
             $table->string('file');

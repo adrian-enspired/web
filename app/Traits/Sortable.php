@@ -5,8 +5,8 @@ namespace App\Traits;
 trait Sortable
 {
 
-    public $sortField = 'id';
-    public $sortDirection = 'asc';
+    public $sortField = 'updated_at';
+    public $sortDirection = 'desc';
 
     public function sortBy($field)
     {
