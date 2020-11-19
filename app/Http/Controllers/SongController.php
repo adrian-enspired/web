@@ -29,7 +29,7 @@ class SongController extends Controller
 
         $file->move(Storage::disk('songs')->path('/'), $new_filename);
 
-        return response()->json(['song'=>$song]);
+        return response()->json($song);
     }
 
 }

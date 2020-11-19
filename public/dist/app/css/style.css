@@ -478,6 +478,12 @@ a:not([href]) {
   height: 100%;
 }
 
+.song-dropzone {
+  min-height: 150px;
+  background: white;
+  border: 1px dashed #e9ecef;
+}
+
 pre,
 code,
 kbd,

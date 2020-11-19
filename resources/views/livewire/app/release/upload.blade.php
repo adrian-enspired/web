@@ -57,12 +57,24 @@
     <div class="row p-t-30">
         <div class="col-md-12">
             <div class="card">
-                <form id="upload-song" method="POST" action="{{ route('song.upload') }}" class="dropzone">
+                <form id="upload-song" method="POST" action="{{ route('song.upload') }}" class="song-dropzone">
                     @csrf
+                    <div class="dropify-wrapper">
+                        <div class="dropify-message">
+                            <span class="file-icon"></span>
+                            <p>Drag and drop songs or click here</p>
+                        </div>
+                        <div class="dropify-loader"></div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <ul>
+        @foreach ($songs as $song)
+            <li>{{ $song->file }}</li>
+        @endforeach
+    </ul>
 
     <script>
         document.addEventListener("livewire:load", function (evt) {
@@ -71,11 +83,17 @@
                     'default': 'Drag and drop cover artwork or click here'
                 }
             });
-            Dropzone.options.uploadSong = {
+
+            var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
                 acceptedFiles: '.mp3, .ogg, .wav',
-                dictDefaultMessage: 'Drop songs here to add to this release'
-            };
+                clickable: ['.song-dropzone', '#upload-song > .dropify-wrapper']
+            });
+
+            dz.on("complete", function(file, a) {
+                @this.songs.push(file.xhr.response);
+                dz.removeFile(file);
+            });
         });
     </script>
 </div>
