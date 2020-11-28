@@ -36,18 +36,10 @@ class Sidebar extends Component
         [
             'id' => 'messages',
             'name' => 'Messages',
-            'route' => '/admin/messages',
+            'route' => '/inbox',
             'icon' => 'icon-envelope-open',
             'class' => ''
-        ],
-        [
-            'id' => 'reports',
-            'name' => 'Reports',
-            'route' => '/admin/reports',
-            'icon' => 'icon-docs',
-            'class' => ''
-        ],
-
+        ]
     ];
 
     public function render()

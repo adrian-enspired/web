@@ -21,9 +21,11 @@ class Release extends Model
     protected $fillable = [
         'title',
         'artist',
+        'label',
         'artwork',
         'status',
-        'user_id'
+        'user_id',
+        'featured'
     ];
 
     /**

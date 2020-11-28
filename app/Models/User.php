@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use App\Traits\Encryptable;
+use App\Traits\HasInbox;
 
 class User extends Authenticatable
 {
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use Encryptable;
+    use HasInbox;
 
     /**
      * The attributes that are mass assignable.
@@ -107,5 +109,15 @@ class User extends Authenticatable
     public function releases()
     {
         return $this->hasMany(Release::class);
+    }
+
+    /**
+     * Return the layout for this user
+     *
+     * @return string
+     */
+    public function layout() : string
+    {
+        return $this->admin ? 'layouts.admin' : 'layouts.app';
     }
 }

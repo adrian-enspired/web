@@ -26,6 +26,8 @@ class Song extends Model
         'language',
         'instrumental',
         'explicit',
+        'live',
+        'cover',
         'file',
         'original_filename',
         'release_id'

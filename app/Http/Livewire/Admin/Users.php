@@ -30,6 +30,9 @@ class Users extends Component
             'editing.email' => 'required|email|unique:users,email,' . $id,
             'editing.company' => 'nullable|string',
             'editing.phone' => 'nullable|string',
+            'editing.address' => 'nullable|string',
+            'editing.bank_account_info' => 'nullable|string',
+            'editing.paypal_email' => 'nullable|email',
             'editing.admin' => 'boolean',
             'editing.password' => $password_rules,
             'editing.password_confirmation' => ''
@@ -65,6 +68,8 @@ class Users extends Component
         }
 
         unset($this->editing->password_confirmation);
+        $this->editing->admin = $this->editing->admin || false;
+
         $this->editing->save();
         $this->showEditModal = false;
     }

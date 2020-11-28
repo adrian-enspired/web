@@ -26,7 +26,7 @@
                                 <x-table.heading sortable wire:click="sortBy('email')" :direction="$sortField === 'email' ? $sortDirection : null">Email</x-table.heading>
                                 <x-table.heading sortable wire:click="sortBy('company')" :direction="$sortField === 'company' ? $sortDirection : null">Company</x-table.heading>
                                 <x-table.heading sortable wire:click="sortBy('updated_at')" :direction="$sortField === 'updated_at' ? $sortDirection : null">Updated On</x-table.heading>
-                                <x-table.heading sortable wire:click="sortBy('admin')" :direction="$sortField === 'admin' ? $sortDirection : null">Admin</x-table.heading>
+                                <x-table.heading sortable wire:click="sortBy('admin')" :direction="$sortField === 'admin' ? $sortDirection : null">Role</x-table.heading>
                                 <x-table.heading/>
                             </x-slot>
                             <x-slot name="body">
@@ -41,29 +41,33 @@
                                             </a>
                                         </x-table.cell>
                                         <x-table.cell>
-                                            <span class="inline-flex space-x-2 truncate text-sn leading-5">
+                                            <span class="inline-flex space-x-2 truncate text-sm leading-5">
                                                 <p class="text-cool-gray-600 truncate">
                                                     {{ $user->email }}
                                                 </p>
                                             </span>
                                         </x-table.cell>
                                         <x-table.cell>
-                                            <span class="inline-flex space-x-2 truncate text-sn leading-5">
+                                            <span class="inline-flex space-x-2 truncate text-sm leading-5">
                                                 <p class="text-cool-gray-600 truncate">
                                                     {{ $user->company }}
                                                 </p>
                                             </span>
                                         </x-table.cell>
                                         <x-table.cell>
-                                            <span class="inline-flex space-x-2 truncate text-sn leading-5">
+                                            <span class="inline-flex space-x-2 truncate text-sm leading-5">
                                                 <p class="text-cool-gray-600 truncate">
                                                     {{ $user->updated_at->format('M, d Y H:m:s') }}
                                                 </p>
                                             </span>
                                         </x-table.cell>
                                         <x-table.cell>
-                                            <span class="inline-flex items-center px-2.5 rounded-full text-xs font-medium leading-4 bg-{{ $user->admin_color }}-100 text-{{ $user->admin_color }}-800 capitalize">
-                                                {{ $user->admin ? 'Yes' : 'No' }}
+                                            <span class="inline-flex space-x-2 items-center text-sm leading-5">
+                                                @if ($user->admin)
+                                                    <span class="label label-danger">admin</span>
+                                                @else
+                                                    <span class="label label-info">user</span>
+                                                @endif
                                             </span>
                                         </x-table.cell>
                                         <x-table.cell>
@@ -112,6 +116,15 @@
                 </x-input.group>
                 <x-input.group for="phone" label="Phone" :error="$errors->first('editing.phone')">
                     <x-input.text wire:model.defer="editing.phone" id="phone" />
+                </x-input.group>
+                <x-input.group for="paypal_email" label="PayPal Email Address" :error="$errors->first('editing.paypal_email')">
+                    <x-input.text wire:model.defer="editing.paypal_email" id="paypal_email" />
+                </x-input.group>
+                <x-input.group for="address" label="Mailing Address" :error="$errors->first('editing.address')">
+                    <x-input.textarea wire:model.defer="editing.address" id="address" />
+                </x-input.group>
+                <x-input.group for="bank_account_info" label="Bank Account Info" :error="$errors->first('editing.bank_account_info')">
+                    <x-input.textarea wire:model.defer="editing.bank_account_info" id="bank_account_info" />
                 </x-input.group>
                 <x-input.group for="admin" label="Administrator" :error="$errors->first('editing.admin')">
                     <x-input.checkbox wire:model.defer="editing.admin" id="admin" />

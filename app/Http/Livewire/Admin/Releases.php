@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Release;
@@ -23,11 +24,22 @@ class Releases extends Component
 
     public function rules()
     {
-        $id = $this->editing ? $this->editing->id : 0;
         return [
             'editing.title' => 'required|string',
             'editing.artist' => 'string',
             'editing.status' => 'string',
+            'editing.featured' => [
+                'required',
+                'boolean',
+                function ($attribute, $value, $fail) {
+                    if (
+                        $value === true &&
+                        Release::where('featured', 1)->count() >= 10
+                    ) {
+                        $fail('Only 10 featured releases are allowed.');
+                    }
+                }
+            ]
         ];
     }
 
@@ -53,6 +65,7 @@ class Releases extends Component
 
         $this->showEditModal = true;
     }
+
     public function save()
     {
         $this->validate();

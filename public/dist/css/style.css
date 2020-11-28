@@ -36,6 +36,11 @@ File: scss
   background-image: url(/assets/img/BG/bodyBG.jpg);
 }
 
+img.tbl-cover-art {
+  max-height: 100px;
+  max-width: 100px;
+}
+
 .skin-green {
   /*Theme Colors*/ }
   .skin-green .topbar {
@@ -5273,6 +5278,10 @@ button.bg-purple:focus {
 
 .bg-white {
   background-color: #fff !important; }
+
+.bg-lightyellow {
+  background-color: #fff3cd !important; }
+}
 
 .bg-transparent {
   background-color: transparent !important; }

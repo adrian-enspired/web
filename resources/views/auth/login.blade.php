@@ -25,10 +25,14 @@
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                     {{ __('Forget your password?') }}
                 </a>
-
                 <x-jet-button class="ml-4">
                     {{ __('Sign In') }}
                 </x-jet-button>
+            </div>
+            <div class="flex items-center justify-center mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __("Don't have an account?") }}
+                </a>
             </div>
         </form>
     </x-jet-authentication-card>

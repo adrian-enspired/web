@@ -20,11 +20,22 @@
                 </div>
                 <div class="card-body">
                     <!-- .row -->
-                    <div class="row text-center m-t-10">
+                    <div class="row text-center m-t-10 border-bottom">
                         <div class="col-md-12 border-bottom m-b-20 p-b-20">
                             <h5 class="card-title">{{ $release->title }}</h5>
-                            <h6>{{ $release->artist }}</h6>
                         </div>
+                    </div>
+                    <div class="row text-center m-t-10 border-bottom">
+                        <div class="col-md-6 border-right">
+                            <strong>Artist</strong>
+                            <p>{{ $release->artist }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Label</strong>
+                            <p>{{ $release->label }}</p>
+                        </div>
+                    </div>
+                    <div class="row text-center m-t-10 border-bottom">
                         <div class="col-md-6 border-right">
                             <strong>Created</strong>
                             <p>{{ $release->created_at }}</p>
@@ -34,10 +45,9 @@
                             <p>{{ $release->updated_at }}</p>
                         </div>
                     </div>
-                    <hr>
                     <!-- /.row -->
                     <!-- .row -->
-                    <div class="row text-center m-t-10">
+                    <div class="row text-center m-t-10 border-bottom">
                         <div class="col-md-6 border-right">
                             <strong>Songs</strong>
                             <p>{{ $release->songs->count() }}</p>
@@ -52,7 +62,6 @@
                         </div>
                     </div>
                     <!-- /.row -->
-                    <hr>
                 </div>
             </div>
         </div>
@@ -142,6 +151,16 @@
                     <div class="col-md-6">
                         <strong>Explicit</strong>
                         <p>{{ $song->explicit ? 'Yes' : 'No' }}</p>
+                    </div>
+                </div>
+                <div class="row text-center m-t-10 border-top">
+                    <div class="col-md-6 border-right">
+                        <strong>Live</strong>
+                        <p>{{ $song->live ? 'Yes' : 'No' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Cover</strong>
+                        <p>{{ $song->cover ? 'Yes' : 'No' }}</p>
                     </div>
                 </div>
                 <div class="row text-center m-t-10 border-top">

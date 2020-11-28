@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function render()
     {
         return view('index', [
-            'releases' => Release::where('status', '=', 'published')->orderBy('updated_at', 'DESC')->paginate(10)
+            'releases' => Release::where('featured', '=', true)->orderBy('updated_at', 'DESC')->paginate(10)
         ]);
     }
 

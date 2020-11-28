@@ -48,6 +48,15 @@
                                 </div>
                                 <!--/span-->
                             </div>
+                            <div class="row p-t-20">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label class="control-label">Label</label>
+                                        <input type="text" id="label" name="label" class="form-control" placeholder="Label">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
                         </div>
                     </div>
                 </div>

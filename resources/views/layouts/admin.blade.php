@@ -16,6 +16,7 @@
     <link href="/dist/css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="/dist/css/pages/dashboard1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/node_modules/html5-editor/bootstrap-wysihtml5.css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -102,6 +103,9 @@
     <script src="/assets/node_modules/raphael/raphael-min.js"></script>
     <script src="/assets/node_modules/morrisjs/morris.min.js"></script>
     <script src="/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="/assets/node_modules/html5-editor/wysihtml5-0.3.0.js"></script>
+    <script src="/assets/node_modules/html5-editor/bootstrap-wysihtml5.js"></script>
     <!-- Popup message jquery -->
     <script src="/assets/node_modules/toast-master/js/jquery.toast.js"></script>
     <!-- Chart JS -->

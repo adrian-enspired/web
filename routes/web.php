@@ -18,6 +18,11 @@ use App\Http\Livewire\App\ {
     Release\Upload as AppReleaseUpload
 };
 
+use App\Http\Livewire\Inbox\ {
+    Index as InboxIndex,
+    Create as InboxCreate
+};
+
 use App\Http\Controllers\ {
     HomeController,
     Auth\LoginController,
@@ -47,6 +52,16 @@ Route::get('auth/{provider}/callback', [LoginController::class, 'handleProviderC
 
 // TOS route
 Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
+
+// Inbox routes
+Route::middleware(['auth:sanctum', 'verified'])->prefix('inbox')->group(function () {
+    Route::get('/', InboxIndex::class)->name('inbox.index');
+    Route::get('create', InboxCreate::class)->name('inbox.create');
+    // Route::post('store', [InboxController::class, 'store'])->name('inbox.admin.store');
+    // Route::post('{thread}/reply', [InboxController::class, 'reply'])->name('inbox.admin.reply');
+    // Route::get('{thread}', [InboxController::class, 'show'])->name('inbox.admin.show');
+    // Route::delete('{thread}/destroy', [InboxController::class, 'destroy'])->name('inbox.admin.destroy');
+});
 
 // Admin only routes
 Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->prefix('admin')->group(function () {

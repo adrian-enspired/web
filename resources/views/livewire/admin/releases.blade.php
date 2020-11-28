@@ -27,9 +27,11 @@
                             </x-slot>
                             <x-slot name="body">
                                 @forelse ($releases as $release)
-                                    <x-table.row wire:loading.class.delay="opacity-50">
-                                        <x-table.cell>
-                                            <img src="{{ $release->release_artwork_url }}">
+                                    <x-table.row wire:loading.class.delay="opacity-50" class="{{ $release->featured ? 'bg-lightyellow' : '' }}">
+                                        <x-table.cell class="inline-flex">
+                                            <a href="/admin/release/{{ $release->id }}">
+                                                <img class="tbl-cover-art" src="{{ $release->release_artwork_url }}">
+                                            </a>
                                         </x-table.cell>
                                         <x-table.cell>
                                             <a href="/admin/release/{{ $release->id }}" class="group inline-flex space-x-2 truncate text-sm leading-5">
@@ -107,6 +109,9 @@
                             <option value="{{ $status }}" {{ $status === $editing->status ? 'selected' : '' }}>{{ $status }}</option>
                         @endforeach
                     </x-input.select>
+                </x-input.group>
+                <x-input.group for="featured" label="Featured" :error="$errors->first('editing.featured')">
+                    <x-input.checkbox wire:model.defer="editing.featured" id="featured" />
                 </x-input.group>
             </x-slot>
             <x-slot name="footer">
