@@ -12,6 +12,7 @@
  - `npm install`
  - `npm run dev`
  - `vendor/bin/homestead make`
+ - `cp .env.homestead .env`
  - `vagrant up`
  - `vagrant ssh`
  - `cd code && php artisan migrate:fresh --seed`
