@@ -24,3 +24,6 @@
 # Install Node.js v10.x
 #curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 #sudo apt-get install -y nodejs
+
+# Configure max body for file uploads
+echo "client_max_body_size 1G;" > /etc/nginx/conf.d/client_max_body_size.conf
