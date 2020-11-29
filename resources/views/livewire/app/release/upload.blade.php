@@ -55,7 +55,7 @@
     <div class="row p-t-30">
         <div class="col-md-12">
             <div class="card">
-                <form id="upload-song" action="#" class="song-dropzone" wire:submit="addSong">
+                <form id="upload-song" action="#" class="song-dropzone">
                     @csrf
                     <div class="dropify-wrapper">
                         <div class="dropify-message">
@@ -100,7 +100,7 @@
                 });
             });
             dz.on("complete", function(file, a) {
-                @this.songs.push(file.xhr.response);
+                // @this.songs.push(file.xhr.response);
                 dz.removeFile(file);
             });
         });
