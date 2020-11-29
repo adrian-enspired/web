@@ -55,7 +55,7 @@
     <div class="row p-t-30">
         <div class="col-md-12">
             <div class="card">
-                <form id="upload-song" method="POST" action="{{ route('song.upload') }}" class="song-dropzone">
+                <form id="upload-song" action="#" class="song-dropzone" wire:submit="addSong">
                     @csrf
                     <div class="dropify-wrapper">
                         <div class="dropify-message">
@@ -70,7 +70,7 @@
     </div>
     <ul>
         @foreach ($songs as $song)
-            <li>{{ $song->file }}</li>
+            <li>{{ $song->getFilename() }}</li>
         @endforeach
     </ul>
 
@@ -84,10 +84,21 @@
 
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
+                autoProcessQueue: false,
                 acceptedFiles: '.mp3, .ogg, .wav',
                 clickable: ['.song-dropzone', '#upload-song > .dropify-wrapper']
             });
 
+            dz.on('addedfiles', function (files) {
+
+                @this.uploadMultiple('songs', files, (filename) => {
+                    console.log('success');
+                }, () => {
+                    console.log('error')
+                }, (event) => {
+                    console.log('progress');
+                });
+            });
             dz.on("complete", function(file, a) {
                 @this.songs.push(file.xhr.response);
                 dz.removeFile(file);

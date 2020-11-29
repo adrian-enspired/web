@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property mixed id
@@ -36,10 +37,9 @@ class Thread extends Model
      */
     public function participants()
     {
-        return $this->belongsToMany(User::class, 'participants',
-            'thread_id', 'user_id')
-                    ->withPivot('seen_at', 'deleted_at')
-                    ->withTimestamps();
+        return $this->belongsToMany(User::class, 'participants', 'thread_id', 'user_id')
+            ->withPivot('seen_at', 'deleted_at')
+            ->withTimestamps();
     }
 
     /**
@@ -71,7 +71,7 @@ class Thread extends Model
      */
     public function isUnread($userId = null)
     {
-        $userId = $userId ?? auth()->id();
+        $userId = $userId ?? Auth::user()->id;
 
         $participant = $this->participants()
                             ->where('user_id', $userId)

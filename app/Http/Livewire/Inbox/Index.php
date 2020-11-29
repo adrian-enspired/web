@@ -33,4 +33,9 @@ class Index extends Component
     {
         return redirect('inbox/create');
     }
+
+    public function viewThread(Thread $thread)
+    {
+        return redirect("inbox/{$thread->id}");
+    }
 }

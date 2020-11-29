@@ -19,7 +19,7 @@
                             <table class="table table-hover no-wrap">
                                 <tbody>
                                     @forelse($threads as $thread)
-                                        <tr class="{{ $thread->isUnread() ? 'unread' : '' }}">
+                                        <tr class="{{ $thread->isUnread() ? 'unread' : '' }}" wire:click.prevent="viewThread({{ $thread }})">
                                             <td class="hidden-xs-down">{{ $thread->user->name }}</td>
                                             <td class="max-texts">{{ $thread->subject }}</td>
                                             <td class="text-right">{{ $thread->updated_at->diffForHumans() }}</td>
@@ -31,6 +31,9 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            <div>
+                                {{ $threads->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

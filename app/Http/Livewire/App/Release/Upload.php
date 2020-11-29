@@ -3,9 +3,11 @@
 namespace App\Http\Livewire\App\Release;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Upload extends Component
 {
+    use WithFileUploads;
 
     public $songs = [];
 

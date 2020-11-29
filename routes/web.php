@@ -20,7 +20,8 @@ use App\Http\Livewire\App\ {
 
 use App\Http\Livewire\Inbox\ {
     Index as InboxIndex,
-    Create as InboxCreate
+    Create as InboxCreate,
+    Thread as InboxThread
 };
 
 use App\Http\Controllers\ {
@@ -57,9 +58,9 @@ Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name
 Route::middleware(['auth:sanctum', 'verified'])->prefix('inbox')->group(function () {
     Route::get('/', InboxIndex::class)->name('inbox.index');
     Route::get('create', InboxCreate::class)->name('inbox.create');
-    // Route::post('store', [InboxController::class, 'store'])->name('inbox.admin.store');
+    Route::get('{id}', InboxThread::class)->name('inbox.show');
+
     // Route::post('{thread}/reply', [InboxController::class, 'reply'])->name('inbox.admin.reply');
-    // Route::get('{thread}', [InboxController::class, 'show'])->name('inbox.admin.show');
     // Route::delete('{thread}/destroy', [InboxController::class, 'destroy'])->name('inbox.admin.destroy');
 });
 
