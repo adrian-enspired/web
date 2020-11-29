@@ -7,7 +7,6 @@ use Livewire\WithPagination;
 use App\Models\User;
 use App\Traits\Sortable;
 use App\Actions\Fortify\PasswordValidationRules;
-use Illuminate\Support\Facades\Auth;
 
 class Users extends Component
 {
@@ -85,7 +84,6 @@ class Users extends Component
 
     public function loginAsUser(User $user)
     {
-        Auth::login($user);
-        return redirect('redirects');
+        return User::loginAs($user);
     }
 }

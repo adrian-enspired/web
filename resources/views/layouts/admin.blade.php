@@ -16,7 +16,10 @@
     <link href="/dist/css/style.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="/dist/css/pages/dashboard1.css" rel="stylesheet">
+    <link href="dist/css/pages/inbox.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/node_modules/html5-editor/bootstrap-wysihtml5.css" />
+    <link href="/assets/node_modules/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/assets/node_modules/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -111,6 +114,7 @@
     <!-- Chart JS -->
     <script src="/dist/js/dashboard1.js"></script>
     <script src="/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+    <script src="/assets/node_modules/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
     <!-- jQuery peity -->
     <script src="/assets/node_modules/peity/jquery.peity.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer=""></script>

@@ -6,33 +6,12 @@ use Carbon\Carbon;
 use App\Events\NewMessageDispatched;
 use App\Events\NewReplyDispatched;
 use App\Models\Thread;
-use App\Models\Participants;
+use App\Models\Participant;
 
 trait HasInbox
 {
     protected $subject, $message;
     protected $recipients = [];
-    protected $threadsTable, $messagesTable, $participantsTable;
-    protected $threadClass, $participantClass;
-
-    /**
-     * Create a new Eloquent model instance.
-     *
-     * @param  array $attributes
-     *
-     * @return void
-     */
-    public function __construct(array $attributes = [])
-    {
-        $this->threadsTable = 'threads';
-        $this->messagesTable = 'messages';
-        $this->participantsTable = 'participants';
-
-        $this->threadClass = Thread::class;
-        $this->participantClass = Participant::class;
-
-        parent::__construct($attributes);
-    }
 
     public function subject($subject)
     {
@@ -78,8 +57,7 @@ trait HasInbox
         ]);
 
         // Sender
-        $participantClass = $this->participantClass;
-        $participantClass::create([
+        Participant::create([
             'user_id' => $this->id,
             'thread_id' => $thread->id,
             'seen_at' => Carbon::now()
@@ -106,8 +84,7 @@ trait HasInbox
     public function reply($thread)
     {
         if ( ! is_object($thread)) {
-            $threadClass = $this->threadClass;
-            $thread = $threadClass::whereId($thread)->firstOrFail();
+            $thread = Thread::whereId($thread)->firstOrFail();
         }
 
         $thread->activateAllParticipants();
@@ -118,8 +95,7 @@ trait HasInbox
         ]);
 
         // Add replier as a participant
-        $participantClass = $this->participantClass;
-        $participant = $participantClass::firstOrCreate([
+        $participant = Participant::firstOrCreate([
             'thread_id' => $thread->id,
             'user_id' => $this->id
         ]);
@@ -142,7 +118,7 @@ trait HasInbox
      */
     public function threads()
     {
-        return $this->hasMany($this->threadClass);
+        return $this->hasMany(Thread::class);
     }
 
     /**
@@ -153,12 +129,12 @@ trait HasInbox
      */
     public function participated($withTrashed = false)
     {
-        $query = $this->belongsToMany($this->threadClass, $this->participantsTable, 'user_id', 'thread_id')
+        $query = $this->belongsToMany(Thread::class, 'participants', 'user_id', 'thread_id')
                       ->withPivot('seen_at')
                       ->withTimestamps();
 
         if ( ! $withTrashed) {
-            $query->whereNull("{$this->participantsTable}.deleted_at");
+            $query->whereNull('participants.deleted_at');
         }
 
         return $query;
@@ -183,7 +159,7 @@ trait HasInbox
     public function sent()
     {
         return $this->participated()
-                    ->where("{$this->threadsTable}.user_id", $this->id)
+                    ->where('threads.user_id', $this->id)
                     ->latest('updated_at');
     }
 

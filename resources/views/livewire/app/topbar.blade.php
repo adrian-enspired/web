@@ -152,6 +152,11 @@
                         </ul>
                     </div>
                 </li>
+                @if ($is_admin)
+                    <li class="nav-item">
+                        <button class="btn btn-danger btn-sm" wire:click="returnToAdmin">Return To Admin</button>
+                    </li>
+                @endif
                 <!-- ============================================================== -->
                 <!-- End Messages -->
                 <!-- ============================================================== -->

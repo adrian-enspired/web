@@ -12,6 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use App\Traits\Encryptable;
 use App\Traits\HasInbox;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class User extends Authenticatable
 {
@@ -119,5 +121,32 @@ class User extends Authenticatable
     public function layout() : string
     {
         return $this->admin ? 'layouts.admin' : 'layouts.app';
+    }
+
+    public static function loginAs(User $user)
+    {
+        Cookie::queue('wmalabel_admin', json_encode([
+            'admin_id' => Auth::user()->id,
+            'return_path' => "/admin/users"
+        ]));
+        Auth::login($user);
+        return redirect('redirects');
+    }
+
+    public static function returnToAdmin()
+    {
+        $admin = json_decode(Cookie::get('wmalabel_admin') ?? '', true);
+        if (! empty($admin)) {
+            $user = User::find($admin['admin_id']);
+            Auth::login($user);
+            Cookie::queue(Cookie::forget('wmalabel_admin'));
+            return redirect($admin['return_path']);
+        }
+        return redirect('redirects');
+    }
+
+    public static function isImpersonatingUser()
+    {
+        return ! empty(Cookie::get('wmalabel_admin') ?? '');
     }
 }

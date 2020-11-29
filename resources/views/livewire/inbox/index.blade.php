@@ -13,9 +13,6 @@
         <div class="col-lg-12">
             <div class="card">
               <div class="col-lg-12 col-md-8 bg-light">
-                <div class="card-body">
-                    <button>Compose</button>
-                </div>
                 <div class="card-body p-t-0">
                     <div class="card b-all shadow-none">
                         <div class="inbox-center table-responsive">
