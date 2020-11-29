@@ -26,4 +26,5 @@
 #sudo apt-get install -y nodejs
 
 # Configure max body for file uploads
-echo "client_max_body_size 1G;" > /etc/nginx/conf.d/client_max_body_size.conf
+echo "client_max_body_size 1G;" | sudo tee /etc/nginx/conf.d/client_max_body_size.conf
+sudo systemctl restart nginx
