@@ -4,24 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link href="dist/css/pages/login-register-lock.css" rel="stylesheet">
-        <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
-
         <link href="/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
-        <!--Toaster Popup message CSS -->
         <link href="/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
-        <!-- Custom CSS -->
         <link href="/dist/css/style.css" rel="stylesheet">
-        <!-- Dashboard 1 Page CSS -->
         <link href="/dist/css/pages/dashboard1.css" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

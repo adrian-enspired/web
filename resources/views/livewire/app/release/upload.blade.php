@@ -1,6 +1,5 @@
 <div class="container-fluid">
     <form wire:submit.prevent="save">
-
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
                 <h4 class="text-themecolor">Upload Release</h4>
@@ -11,15 +10,7 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
-        <!-- Row -->
         <div class="row">
-            <!-- Column -->
             <div class="col-6">
                 <div class="upload-artwork">
                     <input type="file" name="cover_artwork" id="cover_artwork" />
@@ -46,7 +37,6 @@
                                         <input type="text" id="artist" name="artist" class="form-control" placeholder="Artist(s)">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row p-t-20">
                                 <div class="col-md-10">
@@ -55,7 +45,6 @@
                                         <input type="text" id="label" name="label" class="form-control" placeholder="Label">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                         </div>
                     </div>

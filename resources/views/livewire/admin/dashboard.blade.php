@@ -1,21 +1,10 @@
 <div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h4 class="text-themecolor">Dashboard</h4>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Info box -->
-    <!-- ============================================================== -->
-    <!-- Row -->
     <div class="row">
-        <!-- Column -->
         <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -28,8 +17,6 @@
                 </div>
             </div>
         </div>
-        <!-- Column -->
-        <!-- Column -->
         <div class="col-lg-6 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -121,14 +108,6 @@
             </div>
         </div>
     </div>
-    <!-- /.row -->
-    <!-- ============================================================== -->
-    <!-- End Page Content -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Right sidebar -->
-    <!-- ============================================================== -->
-    <!-- .right-sidebar -->
     <div class="right-sidebar">
         <div class="slimscrollright">
             <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
@@ -179,7 +158,4 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Right sidebar -->
-    <!-- ============================================================== -->
 </div>

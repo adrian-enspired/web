@@ -1,10 +1,4 @@
-<div>
-    {{-- Stop trying to control. --}}
-</div>
 <div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h4 class="text-themecolor">Dashboard Page</h4>
@@ -19,20 +13,12 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
     <div class="row el-element-overlay">
-        <!-- column -->
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">TRENDING ALBUMS</h5>
                     <div class="row m-t-30">
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb1.jpg" alt="user" />
@@ -48,7 +34,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb2.jpg" alt="user" />
@@ -64,7 +49,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb3.jpg" alt="user" />
@@ -80,7 +64,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb4.jpg" alt="user" />
@@ -96,7 +79,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb5.jpg" alt="user" />
@@ -112,7 +94,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb6.jpg" alt="user" />
@@ -130,7 +111,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb6.jpg" alt="user" />
@@ -146,7 +126,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb5.jpg" alt="user" />
@@ -162,7 +141,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb4.jpg" alt="user" />
@@ -178,7 +156,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb3.jpg" alt="user" />
@@ -194,7 +171,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb2.jpg" alt="user" />
@@ -210,7 +186,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-2 col-md-3">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/alb1.jpg" alt="user" />
@@ -230,13 +205,11 @@
                 </div>
             </div>
         </div>
-        <!-- column -->
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">TRENDING ALBUMS</h5>
                     <div class="row m-t-30">
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/vd1.jpg" alt="user" />
@@ -253,7 +226,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/vd2.jpg" alt="user" />
@@ -270,7 +242,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/vd3.jpg" alt="user" />
@@ -287,7 +258,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
@@ -305,8 +275,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/vd5.jpg" alt="user" />
@@ -323,7 +291,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/vd6.jpg" alt="user" />
@@ -340,7 +307,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1"> <img src="/dist/app/images/vd7.jpg" alt="user" />
@@ -357,7 +323,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                         <div class="col-lg-3 col-md-6">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
@@ -375,12 +340,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- column -->
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -503,13 +466,6 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End PAge Content -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Right sidebar -->
-    <!-- ============================================================== -->
-    <!-- .right-sidebar -->
     <div class="right-sidebar">
         <div class="slimscrollright">
             <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
@@ -560,7 +516,4 @@
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Right sidebar -->
-    <!-- ============================================================== -->
 </div>

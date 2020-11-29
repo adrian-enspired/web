@@ -1,37 +1,19 @@
 <header class="topbar">
     <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-        <!-- ============================================================== -->
-        <!-- Logo -->
-        <!-- ============================================================== -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/app/dashboard">
                 <span>
-                    <!-- Dark Logo icon -->
                     <img src="/assets/images/logo_small.png" alt="homepage" class="dark-logo" />
-                    <!-- Light Logo icon -->
                     <img src="/assets/images/logo_small.png" alt="homepage" class="light-logo" />
                 </span>
               </a>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Logo -->
-        <!-- ============================================================== -->
         <div class="navbar-collapse">
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
             <ul class="navbar-nav mr-auto">
-                <!-- This is  -->
                 <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                 <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
             </ul>
-            <!-- ============================================================== -->
-            <!-- User profile and search -->
-            <!-- ============================================================== -->
             <ul class="navbar-nav my-lg-0">
-                <!-- ============================================================== -->
-                <!-- Comment -->
-                <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"> <i class="ti-email"></i>
@@ -44,7 +26,6 @@
                             </li>
                             <li>
                                 <div class="message-center">
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
                                         <div class="mail-contnet">
@@ -52,7 +33,6 @@
                                                 admin!</span> <span class="time">9:30 AM</span>
                                         </div>
                                     </a>
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
                                         <div class="mail-contnet">
@@ -60,7 +40,6 @@
                                                 event</span> <span class="time">9:10 AM</span>
                                         </div>
                                     </a>
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
                                         <div class="mail-contnet">
@@ -68,7 +47,6 @@
                                                 you want</span> <span class="time">9:08 AM</span>
                                         </div>
                                     </a>
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
                                         <div class="mail-contnet">
@@ -85,12 +63,6 @@
                         </ul>
                     </div>
                 </li>
-                <!-- ============================================================== -->
-                <!-- End Comment -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Messages -->
-                <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"> <i class="icon-note"></i>
@@ -103,7 +75,6 @@
                             </li>
                             <li>
                                 <div class="message-center">
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="../assets/images/users/1.jpg" alt="user"
                                                 class="img-circle"> <span
@@ -113,7 +84,6 @@
                                             <span class="time">9:30 AM</span>
                                         </div>
                                     </a>
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="../assets/images/users/2.jpg" alt="user"
                                                 class="img-circle"> <span class="profile-status busy pull-right"></span>
@@ -123,7 +93,6 @@
                                                 at</span> <span class="time">9:10 AM</span>
                                         </div>
                                     </a>
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="../assets/images/users/3.jpg" alt="user"
                                                 class="img-circle"> <span class="profile-status away pull-right"></span>
@@ -133,7 +102,6 @@
                                                 class="time">9:08 AM</span>
                                         </div>
                                     </a>
-                                    <!-- Message -->
                                     <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="../assets/images/users/4.jpg" alt="user"
                                                 class="img-circle"> <span
@@ -157,9 +125,6 @@
                         <button class="btn btn-danger btn-sm" wire:click="returnToAdmin">Return To Admin</button>
                     </li>
                 @endif
-                <!-- ============================================================== -->
-                <!-- End Messages -->
-                <!-- ============================================================== -->
             </ul>
         </div>
     </nav>
