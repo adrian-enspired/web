@@ -7,6 +7,22 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## How to use
+ - `composer install`
+ - `npm install`
+ - `npm run dev`
+ - `vendor/bin/homestead make`
+ - `vagrant up`
+ - `vagrant ssh`
+ - `cd code && php artisan migrate:fresh --seed`
+ - Access http://homestead.test from browser
+ - Login with the following creds for admin:
+   - Username: `admin@localhost`
+   - Password: `admin`
+ - Login with the following creds for user:
+   - Username: `user@localhost`
+   - Password: `user`
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
