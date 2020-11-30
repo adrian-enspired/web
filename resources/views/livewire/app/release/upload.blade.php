@@ -81,7 +81,6 @@
                     'default': 'Drag and drop cover artwork or click here'
                 }
             });
-
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
                 autoProcessQueue: false,

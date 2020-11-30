@@ -5,23 +5,20 @@ namespace App\Http\Livewire\Inbox;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Thread as ThreadModel;
+use Carbon\Carbon;
 
 class Thread extends Component
 {
     public $thread;
     public $messages;
 
-    public function mount(ThreadModel $thread)
+    public function mount($id)
     {
-        $this->thread = $thread;
+        $this->thread = ThreadModel::find($id);
         $this->messages = $this->thread->messages()->get();
-        $seen = $thread->participants()
+        $seen = $this->thread->participants()
             ->where('user_id', Auth::user()->id)
             ->first();
-        dump($thread->participants()->get());
-        dump(Auth::user()->id);
-        dump($seen);
-        // dump($seen->pivot);
         if ($seen && $seen->pivot) {
             $seen->pivot->seen_at = Carbon::now();
             $seen->pivot->save();
@@ -33,8 +30,9 @@ class Thread extends Component
     public function render()
     {
         $user = Auth::user();
-        return view('livewire.inbox.thread')
-            ->layout($user->layout(), [
+        return view('livewire.inbox.thread', [
+            'admin' => $user->admin,
+        ])->layout($user->layout(), [
                 'page' => 'messages'
             ]);
     }

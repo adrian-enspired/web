@@ -10,7 +10,6 @@
                 <div class="card-body">
                     <div class="form-group">
                         <select class="selectpicker show-tick" title="Select Recipient(s)" type="text" id="recipients" wire:model.defer="draft.recipients" data-live-search="true" data-show-subtext="true" data-style="btn-info" data-width="100%" required multiple>
-                            <option></option>
                             @foreach($recipients as $user)
                                 <option value="{{ $user->id }}" data-subtext="{{ $user->company }}">
                                     {{ $user->name }}
