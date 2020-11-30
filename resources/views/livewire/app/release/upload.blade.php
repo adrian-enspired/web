@@ -84,23 +84,20 @@
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
                 autoProcessQueue: false,
+                uploadMultiple: true,
                 acceptedFiles: '.mp3, .ogg, .wav',
                 clickable: ['.song-dropzone', '#upload-song > .dropify-wrapper']
             });
 
             dz.on('addedfiles', function (files) {
-
-                @this.uploadMultiple('songs', files, (filename) => {
-                    console.log('success');
+                @this.uploadMultiple('new_songs', files, (filename) => {
+                    console.log('success', filename);
+                    //dz.removeAllFiles();
                 }, () => {
                     console.log('error')
                 }, (event) => {
                     console.log('progress');
                 });
-            });
-            dz.on("complete", function(file, a) {
-                // @this.songs.push(file.xhr.response);
-                dz.removeFile(file);
             });
         });
     </script>
