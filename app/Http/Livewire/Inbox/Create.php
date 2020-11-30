@@ -34,7 +34,7 @@ class Create extends Component
     {
         $this->draft = [];
         $user = Auth::user();
-        $this->recipients = $user->is_admin ?
+        $this->recipients = $user->admin ?
             User::where('id', '!=', $user->id)->get() :
             User::where('admin', '==', true)->get();
     }

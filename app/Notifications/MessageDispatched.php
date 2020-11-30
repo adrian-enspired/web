@@ -85,7 +85,7 @@ class MessageDispatched extends Notification
      */
     public function toMail($notifiable)
     {
-        $context = Auth::user()->is_admin ? 'admin' : 'app';
+        $context = Auth::user()->admin ? 'admin' : 'app';
         $buttonUrl = route(config("inbox.route.{$context}.name") . 'inbox.show', $this->thread);
         $isReply = $this->thread->messages()->count() >= 2;
         $greeting = $isReply ? 'Re: ' . $this->thread->subject : $this->thread->subject;
