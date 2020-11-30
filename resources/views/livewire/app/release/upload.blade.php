@@ -68,9 +68,19 @@
             </div>
         </div>
     </div>
-    <ul>
+    <ul id="songs">
         @foreach ($songs as $song)
-            <li>{{ $song->getFilename() }}</li>
+            <li>
+                <form wire.submit="foo">
+                    <span class="drag">
+                        <i class="icon-arrow-up"></i>
+                        <i class="icon-arrow-down"></i>
+                    </span>
+                    <input name="song_id" value="{{ $song['id'] }}" hidden>
+                    <input name="original_filename" value="{{ $song['original_filename'] }}">
+                    <input type="submit" value="Update">
+                </form>
+            </li>
         @endforeach
     </ul>
 
@@ -81,26 +91,28 @@
                     'default': 'Drag and drop cover artwork or click here'
                 }
             });
+
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
                 autoProcessQueue: false,
+                uploadMultiple: true,
                 acceptedFiles: '.mp3, .ogg, .wav',
                 clickable: ['.song-dropzone', '#upload-song > .dropify-wrapper']
             });
-
             dz.on('addedfiles', function (files) {
-
-                @this.uploadMultiple('songs', files, (filename) => {
-                    console.log('success');
-                }, () => {
-                    console.log('error')
+                @this.uploadMultiple('new_songs', files, (filename) => {
+                    console.log('upload success', filename);
+                }, (error) => {
+                    console.log('upload error', error)
                 }, (event) => {
-                    console.log('progress');
+                    console.log('upload progress', event);
                 });
+                dz.removeAllFiles();
             });
-            dz.on("complete", function(file, a) {
-                // @this.songs.push(file.xhr.response);
-                dz.removeFile(file);
+
+            new Sortable($('#songs')[0],{
+                animation: 150,
+                ghostClass: 'blue-background-class'
             });
         });
     </script>

@@ -21985,6 +21985,20 @@ html body .navbar-dark .mailbox .message-center {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); }
 
 /*******************/
+/*Hide DZ Preview*/
+/*******************/
+.dz-preview,.dz-file-preview {
+  display: none; }
+
+/*******************/
+/*Hide DZ Preview*/
+/*******************/
+
+.drag {
+  display: inline-block;
+  background: #ddd;}
+
+/*******************/
 /*Msg box*/
 /*******************/
 .msg-item {
