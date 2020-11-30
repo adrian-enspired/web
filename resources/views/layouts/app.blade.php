@@ -44,6 +44,7 @@
         <script src="/dist/app/js/perfect-scrollbar.jquery.min.js"></script>
         <script src="/dist/app/js/waves.js"></script>
         <script src="/dist/app/js/sidebarmenu.js"></script>
+        <script src="/dist/app/js/sortable.min.js"></script>
         <script type="text/javascript" src="/dist/app/js/jPlayer/jquery.jplayer.min.js"></script>
         <script type="text/javascript" src="/dist/app/js/jPlayer/add-on/jplayer.playlist.min.js"></script>
         <script type="text/javascript" src="/dist/app/js/jPlayer/init.js"></script>

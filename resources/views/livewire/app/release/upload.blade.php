@@ -68,11 +68,24 @@
             </div>
         </div>
     </div>
-    <ul>
-        @foreach ($songs as $song)
-            <li>{{ $song->getFilename() }}</li>
-        @endforeach
-    </ul>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Song List <span class="note">(type to change titles,  drag and drop to re-order)</span></h3>
+                    <hr>
+                    <ul id="songs">
+                        @foreach ($songs as $song)
+                            <li class="song-li" data-song-id="{{ $song['id'] }}">
+                                @livewire('app.release.song', ['song' => $song], key($song['id']))
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener("livewire:load", function (evt) {
@@ -81,26 +94,37 @@
                     'default': 'Drag and drop cover artwork or click here'
                 }
             });
+
+            var updateTrackNumbers = () => {
+                //document.querySelectorAll('li.song-li').forEach((li) => {})
+                //
+                //[...document.querySelectorAll('li.song-li')]
+                //    .map((li) => li.dataset.songId)
+                //    .join(',');
+            };
+
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
                 autoProcessQueue: false,
+                uploadMultiple: true,
                 acceptedFiles: '.mp3, .ogg, .wav',
                 clickable: ['.song-dropzone', '#upload-song > .dropify-wrapper']
             });
-
             dz.on('addedfiles', function (files) {
-
-                @this.uploadMultiple('songs', files, (filename) => {
-                    console.log('success');
-                }, () => {
-                    console.log('error')
+                @this.uploadMultiple('new_songs', files, (filename) => {
+                    console.log('upload success', filename);
+                    updateTrackNumbers();
+                }, (error) => {
+                    console.log('upload error', error)
                 }, (event) => {
-                    console.log('progress');
+                    console.log('upload progress', event);
                 });
+                dz.removeAllFiles();
             });
-            dz.on("complete", function(file, a) {
-                // @this.songs.push(file.xhr.response);
-                dz.removeFile(file);
+
+            new Sortable($('#songs')[0],{
+                animation: 150,
+                onUpdate: updateTrackNumbers
             });
         });
     </script>
