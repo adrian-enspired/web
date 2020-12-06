@@ -51,6 +51,9 @@
                 </div>
             </div>
         </div>
+        @foreach ($songs as $song_id)
+            <input type="hidden" name="songs[]" value="{{ $song_id }}">
+        @endforeach
     </form>
     <div class="row p-t-30">
         <div class="col-md-12">
@@ -68,9 +71,11 @@
             </div>
         </div>
     </div>
-    <ul>
-        @foreach ($songs as $song)
-            <li>{{ $song->getFilename() }}</li>
+    <ul id="songs">
+        @foreach (App\Models\Song::whereIn('id', $songs)->orderBy('track_number', 'ASC')->get() as $song)
+            <li data-song="{{ $song->id }}">
+                @livewire('app.song.item', ['song' => $song], key($song->id))
+            </li>
         @endforeach
     </ul>
 
@@ -81,26 +86,37 @@
                     'default': 'Drag and drop cover artwork or click here'
                 }
             });
+
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
                 autoProcessQueue: false,
+                uploadMultiple: true,
                 acceptedFiles: '.mp3, .ogg, .wav',
                 clickable: ['.song-dropzone', '#upload-song > .dropify-wrapper']
             });
-
             dz.on('addedfiles', function (files) {
-
-                @this.uploadMultiple('songs', files, (filename) => {
-                    console.log('success');
-                }, () => {
-                    console.log('error')
+                @this.uploadMultiple('new_songs', files, (filename) => {
+                    console.log('upload success', filename);
+                }, (error) => {
+                    console.log('upload error', error)
                 }, (event) => {
-                    console.log('progress');
+                    console.log('upload progress', event);
                 });
+                dz.removeAllFiles();
             });
-            dz.on("complete", function(file, a) {
-                // @this.songs.push(file.xhr.response);
-                dz.removeFile(file);
+
+            new Sortable($('#songs')[0],{
+                animation: 150,
+                ghostClass: 'blue-background-class',
+                onSort: function (evt) {
+                    console.log('ON SORT');
+                    $('ul#songs > li').each(function (index) {
+                        var song_id = $(this).data('song');
+                        var track_number = parseInt(index) + 1;
+                        livewire.emit('updateSongTrackNumber', song_id, track_number);
+                    });
+                    livewire.emit('refreshSongs');
+                }
             });
         });
     </script>
