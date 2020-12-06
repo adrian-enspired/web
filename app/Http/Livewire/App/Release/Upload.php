@@ -14,10 +14,10 @@ class Upload extends Component
 {
     use WithFileUploads;
 
-    public $songs = [];
+    public $songs;
     public $new_songs = [];
 
-    protected $listeners = ['upload:finished' => 'storeUploadedSongs'];
+    protected $listeners = ['upload:finished' => 'storeNewSongs'];
 
     public function render()
     {
@@ -27,20 +27,26 @@ class Upload extends Component
             ]);
     }
 
-    public function storeUploadedSongs()
+    public function mount()
+    {
+        $this->songs = [];
+    }
+
+    public function storeNewSongs()
     {
         foreach ($this->new_songs as $new_song) {
             $original_filename = $new_song->getClientOriginalName();
             $new_filename = Str::uuid() . ".{$new_song->extension()}";
-
             $song = Song::create([
               'file' => $new_filename,
-              'original_filename' => $original_filename
+              'original_filename' => $original_filename,
+              'track_number' => Song::whereIn('id', $this->songs)->max('track_number') + 1
             ]);
 
-            $new_song->move(Storage::disk('songs')->path('/'), $new_filename);
-            $this->songs[] = $new_song;
+            $new_song->storeAs('/', $new_filename, ['disk' => 'songs']);
+            $this->songs[] = $song->id;
         }
+        $this->emit('refreshSongs');
         $this->new_songs = [];
     }
 }
