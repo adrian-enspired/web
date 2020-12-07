@@ -53,10 +53,11 @@ class DataSeeder extends Seeder
             'admin' => false
         ]);
         shuffle($statuses);
-        $artwork = 'releases/' . rand(1, 14) . '.jpg';
+        $artwork = rand(1, 14) . '.jpg';
         $release = Release::create([
             'title' => Faker::create()->company,
             'artist' => Faker::create()->name,
+            'label' => Faker::create()->company,
             'artwork' => $artwork,
             'status' => $statuses[0],
             'user_id' => $user->id
@@ -64,7 +65,7 @@ class DataSeeder extends Seeder
         for ($i = 0; $i < rand(5, 15); $i++) {
             shuffle($genres);
             $instrumental = !! rand(0, 1);
-            $song = 'songs/' . rand(1, 14) . '.mp3';
+            $song = rand(1, 14) . '.mp3';
             Song::create([
                 'track_number' => $i+1,
                 'title' => Faker::create()->company,
@@ -75,6 +76,8 @@ class DataSeeder extends Seeder
                 'language' => 'English',
                 'instrumental' => $instrumental,
                 'explicit' => !! rand(0, 1),
+                'live' => !! rand(0, 1),
+                'cover' => !! rand(0, 1),
                 'file' => $song,
                 'release_id' => $release->id
             ]);
@@ -93,10 +96,11 @@ class DataSeeder extends Seeder
             // Create 1-5 Releases
             for ($a = 0; $a < rand(1, 5); $a++) {
                 shuffle($statuses);
-                $artwork = 'releases/' . rand(1, 14) . '.jpg';
+                $artwork = rand(1, 14) . '.jpg';
                 $release = Release::create([
                     'title' => Faker::create()->company,
                     'artist' => Faker::create()->name,
+                    'label' => Faker::create()->company,
                     'artwork' => $artwork,
                     'status' => $statuses[0],
                     'user_id' => $user->id
@@ -105,7 +109,7 @@ class DataSeeder extends Seeder
                     // Create 5-15 random songs
                     shuffle($genres);
                     $instrumental = !! rand(0, 1);
-                    $song = 'songs/' . rand(1, 14) . '.mp3';
+                    $song = rand(1, 14) . '.mp3';
                     Song::create([
                         'track_number' => $s+1,
                         'title' => Faker::create()->company,
@@ -116,6 +120,8 @@ class DataSeeder extends Seeder
                         'language' => 'English',
                         'instrumental' => $instrumental,
                         'explicit' => !! rand(0, 1),
+                        'live' => !! rand(0, 1),
+                        'cover' => !! rand(0, 1),
                         'file' => $song,
                         'release_id' => $release->id
                     ]);
