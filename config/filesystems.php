@@ -55,6 +55,13 @@ return [
             'visibility' => 'public'
         ],
 
+        'releases' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/releases'),
+            'url' => env('APP_URL').'/storage/releases',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

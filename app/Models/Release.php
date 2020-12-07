@@ -80,7 +80,7 @@ class Release extends Model
     public function getReleaseArtworkUrlAttribute()
     {
         return $this->artwork
-            ? Storage::url($this->artwork)
-            : Storage::url('default_release.jpg');
+            ? Storage::disk('releases')->url($this->artwork)
+            : Storage::disk('releases')->url('default_release.jpg');
     }
 }

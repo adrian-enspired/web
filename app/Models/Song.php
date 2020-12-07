@@ -30,7 +30,8 @@ class Song extends Model
         'cover',
         'file',
         'original_filename',
-        'release_id'
+        'release_id',
+        'id3'
     ];
 
     /**
@@ -78,7 +79,7 @@ class Song extends Model
     public function getSongUrlAttribute()
     {
         return $this->file
-            ? Storage::url($this->file)
+            ? Storage::disk('songs')->url($this->file)
             : '';
     }
 }

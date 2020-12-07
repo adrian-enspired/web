@@ -28,7 +28,8 @@
         "socialiteproviders/yahoo": "^4.0",
         "socialiteproviders/yandex": "^4.0",
         "stechstudio/laravel-zipstream": "^2.6",
-        "tightenco/ziggy": "^0.9.4"
+        "tightenco/ziggy": "^0.9.4",
+        "wapmorgan/mp3info": "^0.0.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

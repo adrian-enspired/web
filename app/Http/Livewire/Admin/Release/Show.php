@@ -40,9 +40,13 @@ class Show extends Component
     {
         $release = Release::find($id);
         $zip = Zip::create("{$release->id}.zip");
-        $zip->add(Storage::disk('public')->path($release->artwork));
+        $cover_art = Storage::disk('releases')->path($release->artwork);
+        $zip->add($cover_art, 'cover.' . pathinfo($cover_art)['extension']);
         foreach ($release->songs as $song) {
-            $zip->add(Storage::disk('public')->path($song->file));
+            $zip->add(
+                Storage::disk('songs')->path($song->file),
+                "songs/{$song->track_number} - {$song->artist} - {$song->title}.mp3"
+            );
         }
         return $zip;
     }
