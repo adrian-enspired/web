@@ -96,4 +96,19 @@ class Upload extends Component
         $this->emit('refreshSongs');
         $this->new_songs = [];
     }
+
+    public function updateTrackNumbers(array $tracks_in_order)
+    {
+        $dump = [];
+
+        foreach ($tracks_in_order as $i => $song_id) {
+            $song = Song::find($song_id);
+            $song->track_number = $i + 1;
+            $song->save();
+
+            $dump[] = $song->toArray();
+        }
+
+        dd($dump);
+    }
 }

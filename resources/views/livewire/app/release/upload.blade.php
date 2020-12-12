@@ -71,21 +71,40 @@
             </div>
         </div>
     </div>
-    <ul id="songs">
-        @foreach (App\Models\Song::whereIn('id', $songs)->orderBy('track_number', 'ASC')->get() as $song)
-            <li data-song="{{ $song->id }}">
-                @livewire('app.song.item', ['song' => $song], key($song->id))
-            </li>
-        @endforeach
-    </ul>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Song List <span class="note">(type to edit,  drag to re-order)</span></h3>
+                    <hr>
+                    <ul id="songs">
+                    @foreach (\App\Models\Song::whereIn('id', $songs)->orderBy('track_number', 'ASC')->get() as $song)
+                        <li class="song-li" data-song-id="{{ $song->id }}">
+                            <div class="col-md-1 drag-handle"></div>
+                            <div class="col-md-11">
+                                @livewire('app.release.song', ['song' => $song], key($song->id))
+                            </div>
+                        </li>
+                    @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener("livewire:load", function (evt) {
             $('#cover_artwork').dropify({
-                'messages': {
-                    'default': 'Drag and drop cover artwork or click here'
-                }
+                'messages': { 'default': 'Drag and drop cover artwork or click here' }
             });
+
+            var updateTrackNumbers = () => {
+                console.log('updating tracks');
+                @this.updateTrackNumbers(
+                    [...document.querySelectorAll('li.song-li')].map((li) => li.dataset.songId)
+                );
+            };
 
             var dz = new Dropzone('#upload-song', {
                 createImageThumbnails: false,
@@ -97,6 +116,7 @@
             dz.on('addedfiles', function (files) {
                 @this.uploadMultiple('new_songs', files, (filename) => {
                     console.log('upload success', filename);
+                    updateTrackNumbers();
                 }, (error) => {
                     console.log('upload error', error)
                 }, (event) => {
@@ -107,16 +127,7 @@
 
             new Sortable($('#songs')[0],{
                 animation: 150,
-                ghostClass: 'blue-background-class',
-                onSort: function (evt) {
-                    console.log('ON SORT');
-                    $('ul#songs > li').each(function (index) {
-                        var song_id = $(this).data('song');
-                        var track_number = parseInt(index) + 1;
-                        livewire.emit('updateSongTrackNumber', song_id, track_number);
-                    });
-                    livewire.emit('refreshSongs');
-                }
+                onSort: updateTrackNumbers
             });
         });
     </script>
