@@ -76,14 +76,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Song List <span class="note">(type to edit,  drag to re-order)</span></h3>
+                    <h3 class="card-title">Song List <span class="note">(drag to re-order)</span></h3>
                     <hr>
                     <ul id="songs">
                     @foreach (\App\Models\Song::whereIn('id', $songs)->orderBy('track_number', 'ASC')->get() as $song)
                         <li class="song-li" data-song-id="{{ $song->id }}">
-                            <div class="col-md-1 drag-handle"></div>
-                            <div class="col-md-11">
-                                @livewire('app.release.song', ['song' => $song], key($song->id))
+                            <div class="row">
+                                <div class="col-md-1 drag-handle"></div>
+                                <div class="col-md-11">
+                                    @livewire('app.release.song', ['song' => $song], key($song->id))
+                                </div>
                             </div>
                         </li>
                     @endforeach

@@ -8,11 +8,15 @@
 -- Purchase here: https://tailwindui.com/
 --}}
 @props([
-    'divClass'
+    'divClass',
+    'checked' => false
 ])
 <div class="flex rounded-md">
     <input {{ $attributes }}
         type="checkbox"
         class="form-checkbox border-cool-gray-300 block transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+        @if ($checked)
+        checked
+        @endif
     />
 </div>

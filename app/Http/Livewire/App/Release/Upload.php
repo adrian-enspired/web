@@ -109,6 +109,6 @@ class Upload extends Component
             $dump[] = $song->toArray();
         }
 
-        dd($dump);
+        //dd($dump);
     }
 }
